@@ -24,8 +24,8 @@ with app.app_context():
     # or Flask-Migrate to generate migrations that update the database schema.
     db.create_all()
 
-# @app.route('/')
-# def home():
+@app.route('/')
+    def discussions():
 #     threads = Thread.query.order_by(Thread.created_at.desc()).all()
 #     return render_template('home.html', threads=threads) # return list of threads
 
