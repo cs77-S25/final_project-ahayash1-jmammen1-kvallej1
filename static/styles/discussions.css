@@ -1,0 +1,24 @@
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+}
+
+.main {
+
+    background: rgb(238, 234, 234);
+   
+}
+
+.sidebar {
+    background:rgb(202, 169, 169)
+}
+
+#Welcome {
+    text-align: center;
+    font-size: 24px;
+    color: #b29cc4; /* Dark purple */
+}

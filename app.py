@@ -25,7 +25,16 @@ with app.app_context():
     db.create_all()
 
 @app.route('/')
-    def discussions():
+def discussions():
+    return render_template('discussions.html')
+
+@app.route('/')
+def reviews():
+    return render_template('reviews.html')
+
+@app.route('/')
+def add_post():
+    return render_template('add_post.html')
 #     threads = Thread.query.order_by(Thread.created_at.desc()).all()
 #     return render_template('home.html', threads=threads) # return list of threads
 
