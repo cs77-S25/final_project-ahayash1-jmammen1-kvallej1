@@ -1,5 +1,31 @@
 {% extends "base.html" %}
 
+{%block head%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/discussions.css') }}">
+{% endblock %}
+
+{%block title %} Add Post Section {% endblock %}
 
 {%block content %}
+    <div class="container">
+        <div class="sidebar">
+            <p1>so much blah</p1>
+        </div>
+        
+        <div class="main">
+            <div class="add_post">
+                <p1>blah blah</p1>
+            </div>
+            <!--<div class="add_comment">
+                <p1>blaaaaaa</p1>
+            </div> -->
+        </div>
+
+        
+    </div>
+
+
 {%endblock%}
+
+<p id="Welcome">Welcome to the Add Post Section!</p>

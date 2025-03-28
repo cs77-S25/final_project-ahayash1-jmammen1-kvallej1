@@ -27,16 +27,40 @@ with app.app_context():
 @app.route('/')
 def discussions():
     return render_template('discussions.html')
+# @app.route('/discussion_post/<int:discussion_post_id>')
+# def discussion_post(discussion_post_id):
+#     discussion_post = Discussion_post.query.get_or_404(discussion_post_id) # returns a 404 error if get fails
+#     print(discussion_post)
+#     return render_template('discussions.html', discussion_post=discussion_post) # return the discussion_post object
 
 @app.route('/')
 def reviews():
     return render_template('reviews.html')
+# @app.route('/review_post/<int:review_id>')
+# def review_post(review_id):
+#     review_post = Review_post.query.get_or_404(thread_id) # returns a 404 error if get fails
+#     print(review_post)
+#     return render_template('reviews.html', review_post=review_post) # return the review_post object
 
 @app.route('/')
 def add_post():
     return render_template('add_post.html')
 #     threads = Thread.query.order_by(Thread.created_at.desc()).all()
 #     return render_template('home.html', threads=threads) # return list of threads
+
+# @app.route('add_post', methods=['POST'])
+# def add_post():
+#     form = request.get_json()
+#     title = form["title"]
+#     content = form["content"]
+#     if title and content:
+#         add_post = Add_post(title=title, content=content)
+#         db.session.add(add_post)
+#         db.session.commit()
+#         print(f"Added new post: {add_post.serialize()}")
+#         return make_response(jsonify({"success": "true", "add_post": add_post.serialize()}), 200) # return both JSON object and HTTP response status (200: OK)
+
+#     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 
 # @app.route('/thread/<int:thread_id>')
 # def thread(thread_id):
