@@ -33,7 +33,7 @@ def discussions():
 #     print(discussion_post)
 #     return render_template('discussions.html', discussion_post=discussion_post) # return the discussion_post object
 
-@app.route('/')
+@app.route('/revews')
 def reviews():
     return render_template('reviews.html')
 # @app.route('/review_post/<int:review_id>')
@@ -42,7 +42,7 @@ def reviews():
 #     print(review_post)
 #     return render_template('reviews.html', review_post=review_post) # return the review_post object
 
-@app.route('/')
+@app.route('/add_post')
 def add_post():
     return render_template('add_post.html')
 #     threads = Thread.query.order_by(Thread.created_at.desc()).all()

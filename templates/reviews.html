@@ -2,7 +2,7 @@
 
 {%block head%}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/discussions.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/reviews.css') }}">
 {% endblock %}
 
 {%block title %} Review Section {% endblock %}
@@ -10,15 +10,31 @@
 {%block content %}
     <div class="container">
         <div class="sidebar">
-            <p1>so much blah</p1>
+            <br><p1>Navigation</p1>
         </div>
         
         <div class="main">
-            <div class="review_post">
-                <p1>blah blah</p1>
-            </div>
-            <div class="review_comment">
-                <p1>blaaaaaa</p1>
+            <br><p1>Welcome to the Reviews!</p1>
+            <div class="review_section">
+                <div class="review_post">
+                    <p1>title</p1>
+                    <p>content</p>
+                    <p>author</p>
+                </div>
+                <div class="review_comments">
+                    <ul class="list-group">
+                        <p>temporary comments</p>
+                       
+                    </ul>
+                
+                    
+                    <form>
+                        <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
+                        <textarea name="comment" class="form-control mb-2" placeholder="Reply..." required></textarea>
+                        <button type="submit" class="btn btn-secondary">Post Comment</button>
+                    </form>
+                </div>
+
             </div>
         </div>
 

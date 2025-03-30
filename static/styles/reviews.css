@@ -1,6 +1,3 @@
-
-
-
 .container {
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -25,7 +22,7 @@
     color: #b29cc4; /* Dark purple */
 }
 
-.discussion_section {
+.review_section {
     background-color: #ffffff; /* White background for threads */
     border: 1px solid #ccc; /* Light border */
     padding: 10px; /* Space inside the thread */
@@ -33,7 +30,7 @@
     border-radius: 5px; /* Slightly rounded corners */
 }
 
-.discussion_post {
+.review_post {
     border: 1px solid #ddd; /* Subtle border around posts */
     padding: 10px; /* Space inside posts */
     margin: 5px 0; /* Space between posts */

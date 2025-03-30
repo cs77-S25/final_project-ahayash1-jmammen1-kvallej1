@@ -10,16 +10,35 @@
 {%block content %}
     <div class="container">
         <div class="sidebar">
-            <p1>so much blah</p1>
+            <br><p1 style="text-align:center;">Navigation</p1>
         </div>
         
         <div class="main">
-            <div class="discussion_post">
-                <p1>blah blah</p1>
+            <br>
+            <p1>Welcome to the Discussions!</p1>
+            <div class="discussion_section">
+                <div class="discussion_post">
+                    <p1>title</p1>
+                    <p>content</p>
+                    <p>author</p>
+                </div>
+                <div class="disc_comments">
+                    <ul class="list-group">
+                        <p>temporary comments</p>
+                       
+                    </ul>
+                
+                    
+                    <form>
+                        <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
+                        <textarea name="comment" class="form-control mb-2" placeholder="Reply..." required></textarea>
+                        <button type="submit" class="btn btn-secondary">Post Comment</button>
+                    </form>
+                </div>
+
             </div>
-            <div class="disc_comment">
-                <p1>blaaaaaa</p1>
-            </div>
+
+            
         </div>
 
         
