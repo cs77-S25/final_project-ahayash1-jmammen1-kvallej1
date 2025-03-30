@@ -1,0 +1,14 @@
+.container {
+    height: 100vh;
+    padding-top: 5vh;
+}
+
+.login {
+    height: 25vh;
+    width: 50vh;
+    background-color:#c8c0bf;
+    border: 1px solid rgb(111, 68, 68); /* Light border */
+    margin:auto;
+    border-radius: 10px; /* Slightly rounded corners */
+}
+

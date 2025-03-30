@@ -40,3 +40,19 @@
     background-color: #f9f9f9; /* Slightly darker background */
    
 }
+
+.disc_comments {
+    border: 1px solid #ddd; /* Subtle border around posts */
+    padding: 10px; /* Space inside posts */
+    margin: 5px 0; /* Space between posts */
+    background-color: #f9f9f9; /* Slightly darker background */
+   
+}
+
+#add_comment {
+    border: 1px solid #ddd; /* Subtle border around posts */
+    padding: 10px; /* Space inside posts */
+    margin: 5px 0; /* Space between posts */
+    background-color: #e4dfdf; /* Slightly darker background */
+}
+

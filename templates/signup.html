@@ -1,6 +1,22 @@
 {% extends "base.html" %}
-
+{%block head%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/signup.css') }}">
+{% endblock %}
 
 
 {%block content %}
+    <div class="container">
+        <div class="signup">
+            <p1>Sign up to create an account</p1>
+            <form>
+                <input type="text" id="username" placeholder="Username..." required maxlength="50">
+                <input type="text" id="password" placeholder="Password..." required maxlength="50">
+                <input type="text" id="email" placeholder="Email..." required maxlength="50">
+                <input type="text" id="screenname" placeholder="Screen name"required maxlength="50">
+                <button type="submit">Sign up</button>
+            <!-- how to add discussion or review and if so, rating and major -->
+            </form>
+        </div>
+    </div>
 {%endblock%}

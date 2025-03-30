@@ -21,7 +21,7 @@
                 <img src="{{ url_for('static', filename='phoenix.jpg') }}">
             </div>
             
-            <ul>
+            <ul id="navigation">
                 
                 <li>
                     <a href="{{ url_for('discussions') }}">Discussions</a>
@@ -32,7 +32,15 @@
                 <li>
                     <a href="{{ url_for('add_post') }}">+</a>
                 </li>
+                <li>
+                    <a href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('signup') }}">Sign up</a>
+                </li>
             </ul>
+                
+            
         </div>
     </nav>
 

@@ -33,7 +33,7 @@ def discussions():
 #     print(discussion_post)
 #     return render_template('discussions.html', discussion_post=discussion_post) # return the discussion_post object
 
-@app.route('/revews')
+@app.route('/reviews')
 def reviews():
     return render_template('reviews.html')
 # @app.route('/review_post/<int:review_id>')
@@ -41,6 +41,15 @@ def reviews():
 #     review_post = Review_post.query.get_or_404(thread_id) # returns a 404 error if get fails
 #     print(review_post)
 #     return render_template('reviews.html', review_post=review_post) # return the review_post object
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
 
 @app.route('/add_post')
 def add_post():
