@@ -10,5 +10,6 @@
     border: 1px solid rgb(111, 68, 68); /* Light border */
     margin:auto;
     border-radius: 10px; /* Slightly rounded corners */
+    padding: 10px;  
 }
 

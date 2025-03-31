@@ -18,11 +18,21 @@
             <p1>Welcome to the Discussions!</p1>
             <div class="discussion_section">
                 <div class="discussion_post">
-                    <p1>title</p1>
-                    <p>discipline</p>
-                    <p>content</p>
-                    <p>author</p>
-                    <p>created_at</p>
+                    <div id="header">
+                  
+                        <p id="title">title</p1>
+                        <p id="author">author</p>
+                        <p id="class">class</p>
+                                                                       
+                    </div>
+                    <p id="content">content</p>  
+                    
+                    <div id="information">
+                        <p id="upvotes">upvotes</p>
+                        <p id="created_at">created_at</p>
+                    </div>
+                     
+
                 </div>
 
                 <div id="add_comment">
@@ -44,6 +54,13 @@
 
         
     </div>
+    <li>
+        <a href="{{ url_for('login') }}">Login</a>
+        
+    </li>
+    <li>
+        <a href="{{ url_for('signup') }}">Sign up</a>
+    </li>
 
 
 {%endblock%}

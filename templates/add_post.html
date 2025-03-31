@@ -19,6 +19,12 @@
             <div class="add_post">
                 <p1>Create New Post</p1>
                 <form>
+                    <select name="category" id="post_type" required>
+                        <option value="">--Please select post type (Discussion or Review)</option>
+                        <option value="discussion">Discussion</option>
+                        <option value="review">Review</option>
+                    </select>
+                        
                     <input type="text" id="title" placeholder="Post title" required maxlength="50">
                     <input type="text" id="author" placeholder="By.." required maxlength="50">
                     <textarea id="content_new_post" placeholder="Post content" required></textarea>
