@@ -8,17 +8,34 @@
 
 
 {%block content %}
+<br><br>
 <div class="container">
-    <div class="login">
-        <p1>Login to your account</p1>
-        <form>
-            <input type="text" id="username" placeholder="Username..." required maxlength="50">
-            <input type="text" id="password" placeholder="Password..." required maxlength="50">
+
+
+    <form id="login" action="{{ url_for('login') }}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <br>
+        <div>
             <button type="submit">Login</button>
-            <p>Don't have an account?</p>
-            <button type="submit">Sign up</button>
-            <!-- how to add discussion or review and if so, rating and major -->
-        </form>
-    </div>
+        </div>
+    </form>
+    <br>
+    <p id="register">Don't have an account? Signup <a href="{{ url_for('signup') }}" >here</a>.</p>
 </div>
+
+
+
+
+
+
+
+
 {%endblock%}

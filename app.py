@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
+from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from models import db, Thread, Comment
@@ -24,9 +24,15 @@ with app.app_context():
     # or Flask-Migrate to generate migrations that update the database schema.
     db.create_all()
 
-@app.route('/')
+@app.route('/') 
 def discussions():
-    return render_template('discussions.html')
+    if 'user_id' in session:
+        messsage = "Welcome, logged in user"
+    else:
+        message = "Welcome, please log in."
+
+    return render_template('discussions.html', session=session, message=message)
+    
 # @app.route('/discussion_post/<int:discussion_post_id>')
 # def discussion_post(discussion_post_id):
 #     discussion_post = Discussion_post.query.get_or_404(discussion_post_id) # returns a 404 error if get fails
@@ -44,16 +50,62 @@ def reviews():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    if 'user_id' not in session:
+        if request.method == 'POST':  # If the form is submitted
+            username = request.form['username']  # Get the username from the form
+            password = request.form['password']  # Get the password from the form
+            user = User.query.filter_by(username=username).first()  # Query the user by username
+            
+            if user and check_password(user.password, password):  # Check if user exists and password is correct
+                session['user_id'] = user.id  # Set the user ID in the session
+                session['username'] = user.username
+                session.permanent = True
+                return redirect(url_for('discussions'))  # Redirect to homepage
+            else:
+                error = "your username or password do not match."
+                return render_template('error.html', error=error) # Display error page
+        
+        else:
+            return render_template('login.html')  # Render the login template
+    else:
+        return redirect(url_for('discussions'))  # Redirect to the login page
+    
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    if 'user_id' not in session:
+        if request.method == 'POST':  # If the form is submitted
+            username = request.form['username']  # Get the username from the form
+            password = request.form['password']  # Get the password from the form
+            new_password = generate_password(password) 
+            new_user = User(username=username, password=new_password)  # Create a new user object
+            db.session.add(new_user)  # Add the new user to the session
+            db.session.commit()  # Commit the session to the database
+            return redirect(url_for('login'))  # Redirect to the login page
+        else:
+            return render_template('signup.html')  # Render the register template
+    else:
+        return redirect(url_for('discussions'))  # Redirect to the login page
 
 
-@app.route('/add_post')
-def add_post():
-    return render_template('add_post.html')
+@app.route('/add_review')
+def add_review():
+    return render_template('add_review.html')
+
+@app.route('/add_discussion')
+def add_discussion():
+    return render_template('add_discussion.html')
+
+
+@app.route('/logout')
+def logout():
+    if 'user_id' in session:
+        session.pop('user_id', None)  # Remove the user ID from the session
+    return redirect(url_for('login'))  # Redirect to the login page
+
+
+
+
 #     threads = Thread.query.order_by(Thread.created_at.desc()).all()
 #     return render_template('home.html', threads=threads) # return list of threads
 

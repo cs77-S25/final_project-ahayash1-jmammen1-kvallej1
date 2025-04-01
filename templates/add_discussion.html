@@ -2,7 +2,7 @@
 
 {%block head%}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/add_post.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/add_discussion.css') }}">
 {% endblock %}
 
 {%block title %} Add Post Section {% endblock %}
@@ -18,15 +18,10 @@
         <div class="main">
             <div class="add_post">
                 <p1>Create New Post</p1>
-                <form>
-                    <select name="category" id="post_type" required>
-                        <option value="">--Please select post type (Discussion or Review)</option>
-                        <option value="discussion">Discussion</option>
-                        <option value="review">Review</option>
-                    </select>
-                        
+                <form>                       
                     <input type="text" id="title" placeholder="Post title" required maxlength="50">
                     <input type="text" id="author" placeholder="By.." required maxlength="50">
+                    <input type="text" id="class" placeholder="Class (optional).." maxlength="50">
                     <textarea id="content_new_post" placeholder="Post content" required></textarea>
                     <button type="submit">Create Post</button>
                     <!-- how to add discussion or review and if so, rating and major -->

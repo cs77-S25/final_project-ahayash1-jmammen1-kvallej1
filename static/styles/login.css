@@ -1,9 +1,10 @@
 .container {
     height: 100vh;
     padding-top: 5vh;
+   
 }
 
-.login {
+#login {
     height: 25vh;
     width: 50vh;
     background-color:#c8c0bf;
@@ -11,5 +12,9 @@
     margin:auto;
     border-radius: 10px; /* Slightly rounded corners */
     padding: 10px;  
+}
+
+#register{
+    text-align:center;
 }
 
