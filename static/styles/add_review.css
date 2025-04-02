@@ -34,33 +34,33 @@
 #content_new_post {
     height: 30vh;
     width: 48vh;
-
 }
 
-/* .rating {
-    display: flex;
+.rating_container .rating {
+    direction: rtl;
 }
 
-.rating input {
-    position: absolute;
-    left: -100 vw;
+.rating_container .rating label{
+    display: inline-block;
+    cursor: pointer;
+    color: #ebebeb;
 }
 
-.rating label {
-    width: 48;
-    height: 48px;
-    overflow: hidden;
-    padding: 48 px 0 0;
-    background: url('styles/stars.svg') no-repeat top left;
+.rating_container .rating label i {
+    font-size: 2rem;
+    transition: 0.1s ease-in
 }
 
-.rating:not(:hover) input:indeterminate + label, 
-.rating:not(:hover) input:checked ~ input + label,
-.rating input:hover ~input + label {
-    background-position:-48px 0;
+.rating_container .rating label:hover i,
+.rating_container .rating label:hover ~ label i {
+    color: #effea4;
 }
 
-.rating:not(:hover) input:focus-visible + label {
-    background-position:-96px 0;
-} */
+.rating_container .rating .rating-radio {
+    display: none;
+}
 
+.rating_container .rating input[type="radio"]:checked + label i,
+.rating_container .rating input[type="radio"]:checked ~ label i {
+    color: #effea4;
+}
