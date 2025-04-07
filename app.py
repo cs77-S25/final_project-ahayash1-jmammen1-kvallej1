@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from models import db, Thread, Comment
+from models import db, Discussion, Review, Comment, User
+from datetime import date, timedelta, datetime
 
 app = Flask(__name__)
 
@@ -31,6 +32,20 @@ def discussions():
     else:
         message = "Welcome, please log in."
 
+    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+
+    discussions_data=[]
+    for discussion in discussions:
+        discussions_data.append({
+            'id': discussion.id,
+            'title': discussion.title,
+            'author': discussion.author,
+            'created_at': discussion.created_at,
+            'content': discussion.content,
+            'course': discussion.course,
+            'upvotes': discussion.upvotes
+        })
+
     return render_template('discussions.html', session=session, message=message)
     
 # @app.route('/discussion_post/<int:discussion_post_id>')
@@ -41,7 +56,49 @@ def discussions():
 
 @app.route('/reviews')
 def reviews():
+    
+    reviews=Review.query.order_by(Review.created_at.desc()).all()
+
+    reviews_data=[]
+    for review in reviews:
+        reviews_data.append({
+            'id': review.id,
+            'title': review.title,
+            'author': review.author,
+            'created_at': review.created_at,
+            'content': review.content,
+            'rating': review.rating,
+        })
     return render_template('reviews.html')
+
+@app.route('/comment/<int:discussion_id>', methods=['POST'])
+def discussion_comment(discussion_id):
+    content = request.form.get('comment')
+    author = request.form.get('author')
+    created_at = datetime.now()
+    
+    if content and author:
+        new_comment = Comment(discussion_id=discussion_id, author=author, created_at=created_at, content=content) # should display created and author
+        db.session.add(new_comment)
+        print(new_comment)
+        db.session.commit()
+
+    return redirect(url_for('discussion', discussion_id=discussion_id)) # set variable thread_id to be thread_id
+
+@app.route('/comment/<int:review_id>', methods=['POST'])
+def review_comment(review_id):
+    content = request.form.get('comment')
+    author = request.form.get('author')
+    created_at = datetime.now()
+    
+    if content and author:
+        new_comment = Comment(discussion_id=review_id, author=author, created_at=created_at, content=content) # should display created and author
+        db.session.add(new_comment)
+        print(new_comment)
+        db.session.commit()
+
+    return redirect(url_for('review', review_id=review_id))
+
 # @app.route('/review_post/<int:review_id>')
 # def review_post(review_id):
 #     review_post = Review_post.query.get_or_404(thread_id) # returns a 404 error if get fails
@@ -68,7 +125,19 @@ def login():
         else:
             return render_template('login.html')  # Render the login template
     else:
-        return redirect(url_for('discussions'))  # Redirect to the login page
+        return redirect(url_for('login.html'))  # Redirect to the login page
+    
+def check_password(a,b):
+    # if check_password_hash(user.password, password):
+    if a == b:
+        return True
+    else: 
+        return False
+
+# Remove me in production
+def generate_password(a):
+    # return generate_password_hash(password, method='sha256')
+    return a
     
 
 @app.route('/signup')
@@ -87,6 +156,49 @@ def signup():
     else:
         return redirect(url_for('discussions'))  # Redirect to the login page
 
+
+@app.route('/add_discussion', methods=['POST'])
+def new_discussion():
+    form = request.get_json()
+    title = form["title"]
+    content = form["content"] # add authors field here
+    author = form["author"]
+
+    created_at = datetime.now()
+    
+    if title and content and author:
+        add_discussion = Discussion(title=title, content=content, author=author, created_at=created_at)
+
+        # use .count and  .filterby
+        db.session.add(add_discussion)
+        db.session.commit()
+        print(f"Added new discussion: {add_discussion.serialize()}")
+        
+        return make_response(jsonify({"success": "true", "discussion": add_discussion.serialize()}), 200)
+    
+    return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
+
+
+@app.route('/add_review', methods=['POST'])
+def new_review():
+    form = request.get_json()
+    title = form["title"]
+    content = form["content"] # add authors field here
+    author = form["author"]
+
+    created_at = datetime.now()
+    
+    if title and content and author:
+        add_review = Review(title=title, content=content, author=author, created_at=created_at)
+
+        # use .count and  .filterby
+        db.session.add(add_review)
+        db.session.commit()
+        print(f"Added new review: {add_review.serialize()}")
+        
+        return make_response(jsonify({"success": "true", "review": add_review.serialize()}), 200)
+    
+    return make_response(jsonify({"success": "false"}), 400)
 
 @app.route('/add_review')
 def add_review():

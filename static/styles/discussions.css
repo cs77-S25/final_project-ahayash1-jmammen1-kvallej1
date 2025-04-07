@@ -25,7 +25,7 @@
     color: #b29cc4; /* Dark purple */
 }
 
-.discussion_section {
+.list-group {
     background-color: #ffffff; /* White background for threads */
     border: 1px solid #ccc; /* Light border */
     padding: 10px; /* Space inside the thread */
@@ -33,7 +33,7 @@
     border-radius: 5px; /* Slightly rounded corners */
 }
 
-.discussion_post {
+.list-group-item {
     border: 1px solid #ddd; /* Subtle border around posts */
     padding: 10px; /* Space inside posts */
     margin: 5px 0; /* Space between posts */
