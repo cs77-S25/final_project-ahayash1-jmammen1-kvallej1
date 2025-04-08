@@ -28,9 +28,9 @@ with app.app_context():
 @app.route('/') 
 def discussions():
     if 'user_id' in session:
-        messsage = "Welcome, logged in user"
+         messsage = "Welcome, logged in user"
     else:
-        message = "Welcome, please log in."
+         message = "Welcome, please log in."
 
     discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
 
@@ -46,7 +46,8 @@ def discussions():
             'upvotes': discussion.upvotes
         })
 
-    return render_template('discussions.html', session=session, message=message)
+    return render_template('discussions.html', session=session,message=message)
+    #return render_template('discussions.html')
     
 # @app.route('/discussion_post/<int:discussion_post_id>')
 # def discussion_post(discussion_post_id):
@@ -175,6 +176,7 @@ def new_discussion():
         print(f"Added new discussion: {add_discussion.serialize()}")
         
         return make_response(jsonify({"success": "true", "discussion": add_discussion.serialize()}), 200)
+    #return redirect(url_for('discussions')) 
     
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 

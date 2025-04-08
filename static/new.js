@@ -1,4 +1,4 @@
-document.querySelector("form").addEventListener("submit", function (event) {
+document.querySelector("form").addEventListener("click", function (event) {
     event.preventDefault(); // Prevent default form submission
 
     let title = document.getElementById("title").value;
@@ -19,9 +19,9 @@ document.querySelector("form").addEventListener("submit", function (event) {
         console.log("Success:", data);
         discussion = data["discussion"];
         console.log(discussion)
-
-        // window.location.href = "new_url";
-        // window.location.replace("newurl");
+        
+        window.location.href = "/";
+        window.location.replace("discussions");
 
         let listgrp = document.getElementsByClassName("list-group")[0];
         let a = document.createElement("a");

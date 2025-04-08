@@ -12,7 +12,7 @@
         <div class="sidebar">
             <br><p1 style="text-align:center;">Navigation</p1>
         </div>
-        <div class="list-group">
+        <!-- <div class="list-group">
         {% for discussion in discussions %}
             <a href="{{ url_for('discussion', discussion_id=discussion.id) }}" class="list-group-item">
                 <div id = "header">
@@ -27,17 +27,18 @@
                
             </a>
         {% endfor %}
-        </div>
+        </div> -->
     </div>
     
-{% endblock %}
-        <!-- <div class="discussion">
+
+        <div class="discussion">
             <br>
             <p1>Welcome to the Discussions!</p1>
            
             <div class="discussion_section">
-                {% for discussion in discussions%}
-                    <a href="{{url_for('discussion', discussion_id=discussion.id) }}" class = "discussion_post">
+                <div class="discussion_post">
+                <!-- {% for discussion in discussions%}
+                    <a href="{{url_for('discussion', discussion_id=discussion.id) }}" class = "discussion_post"> -->
                         <div id="header">
                   
                             <p id="title">title</p1>
@@ -53,9 +54,8 @@
                         </div>
                      
                     </a>
-                     -->
-
-                <!-- <div id="add_comment">
+                </div>
+                <div id="add_comment">
                     <form>
                         <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
                         <textarea name="comment" class="form-control mb-2" placeholder="Add comment..." required></textarea>
@@ -77,12 +77,13 @@
                         </li>
                     </ul>
                 </div>
-                {%endfor%}
+               
             </div>
         </div>
 
         
-    </div>
+
+{%endblock%}
     <li>
         <a href="{{ url_for('login') }}">Login</a>
         
