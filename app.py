@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'null' # disable if in production environment
 app.config['SECRET_KEY'] = 'secret key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 # Enable CORS
 CORS(app)
@@ -27,15 +27,15 @@ with app.app_context():
     # or Flask-Migrate to generate migrations that update the database schema.
     db.create_all()
 
-migrate = Migrate(app,db)
+#migrate = Migrate(app,db)
 
 @app.route('/') 
 def discussions():
     
-    if 'user_id' in session:
-         messsage = "Welcome, logged in user"
-    else:
-         message = "Welcome, please log in."
+    # if 'user_id' in session:
+    #      messsage = "Welcome, logged in user"
+    # else:
+    #      message = "Welcome, please log in."
 
     discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
 
@@ -50,6 +50,7 @@ def discussions():
             'course': discussion.course,
             'upvotes': discussion.upvotes
         })
+    db.session.commit()
 
     return render_template('discussions.html', discussions=discussions_data)
     #return render_template('discussions.html')
@@ -57,7 +58,8 @@ def discussions():
 @app.route('/discussion/<int:discussion_id>')
 def dis_post(discussion_id):
     discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
-    print(discussion)
+    #print(discussion)
+    db.session.commit()
     return render_template('dis_post.html', discussion=discussion) # return the discussion_post object
 
 @app.route('/reviews')
@@ -163,8 +165,8 @@ def signup():
 
 
 @app.route('/new_discussion', methods=['POST'])
-def new_discussion():
-    form = request.get_json()
+def  new_discussion():
+    form =  request.json
     title = form["title"]
     content = form["content"] # add authors field here
     author = form["author"]
@@ -182,7 +184,7 @@ def new_discussion():
         
         return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
     #return redirect(url_for('discussions')) 
-    
+
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 
 

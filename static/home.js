@@ -1,4 +1,4 @@
-document.querySelector("form").addEventListener("click", function (event) {
+document.getElementById("submitForm").addEventListener("click", function (event) {
     event.preventDefault(); // Prevent default form submission
     let form = document.getElementById("form");
     let title = document.getElementById("title").value;
@@ -6,6 +6,7 @@ document.querySelector("form").addEventListener("click", function (event) {
     let author = document.getElementById("author").value;
     let course = document.getElementById("course").value;
     body = JSON.stringify({"title": title, "author": author, "content": content, "course": course}); //deleted "created_at": created_at,
+    //body = {"title": "HIIII"}
     fetch('/new_discussion', {
         method: 'POST',
         headers: {
