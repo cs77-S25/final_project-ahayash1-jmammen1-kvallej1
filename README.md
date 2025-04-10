@@ -18,7 +18,7 @@ Set-up and running application instructions:
 
 -Create a virtual environment (python3 -m venv .venv).
 -Activate your virtual environment (source .venv/bin/activate).
--Install Flask and other required Python libraries (uv pip install flask flask-cors                Flask-SQLAlchemy or uv pip install -r requirements.txt).
--Have your Flask application saved in app.py and run flask with run --debug --reload.
--A link to our server will appear and if you open it in your browser, our 
-application will load. 
+-Install Flask and other required Python libraries (uv pip install flask flask-cors Flask-SQLAlchemy or uv pip install -r requirements.txt).
+-Have your Flask application saved in app.py and run flask run --debug --reload.
+-A link to our server will appear and if you open it in your browser, our
+application will load.

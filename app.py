@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from models import db, Discussion, Review, Comment, User
 from datetime import date, timedelta, datetime
+from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 
@@ -25,8 +27,11 @@ with app.app_context():
     # or Flask-Migrate to generate migrations that update the database schema.
     db.create_all()
 
+migrate = Migrate(app,db)
+
 @app.route('/') 
 def discussions():
+    
     if 'user_id' in session:
          messsage = "Welcome, logged in user"
     else:
@@ -46,18 +51,17 @@ def discussions():
             'upvotes': discussion.upvotes
         })
 
-    return render_template('discussions.html', session=session,message=message)
+    return render_template('discussions.html', discussions=discussions_data)
     #return render_template('discussions.html')
     
-# @app.route('/discussion_post/<int:discussion_post_id>')
-# def discussion_post(discussion_post_id):
-#     discussion_post = Discussion_post.query.get_or_404(discussion_post_id) # returns a 404 error if get fails
-#     print(discussion_post)
-#     return render_template('discussions.html', discussion_post=discussion_post) # return the discussion_post object
+@app.route('/discussion/<int:discussion_id>')
+def dis_post(discussion_id):
+    discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
+    print(discussion)
+    return render_template('dis_post.html', discussion=discussion) # return the discussion_post object
 
 @app.route('/reviews')
 def reviews():
-    
     reviews=Review.query.order_by(Review.created_at.desc()).all()
 
     reviews_data=[]
@@ -158,24 +162,25 @@ def signup():
         return redirect(url_for('discussions'))  # Redirect to the login page
 
 
-@app.route('/add_discussion', methods=['POST'])
+@app.route('/new_discussion', methods=['POST'])
 def new_discussion():
     form = request.get_json()
     title = form["title"]
     content = form["content"] # add authors field here
     author = form["author"]
+    course = form["course"]
 
     created_at = datetime.now()
     
     if title and content and author:
-        add_discussion = Discussion(title=title, content=content, author=author, created_at=created_at)
+        new_discussion = Discussion(title=title, content=content, author=author, created_at=created_at, course=course)
 
         # use .count and  .filterby
         db.session.add(add_discussion)
         db.session.commit()
-        print(f"Added new discussion: {add_discussion.serialize()}")
+        print(f"Added new discussion: {new_discussion.serialize()}")
         
-        return make_response(jsonify({"success": "true", "discussion": add_discussion.serialize()}), 200)
+        return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
     #return redirect(url_for('discussions')) 
     
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
