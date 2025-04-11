@@ -58,9 +58,10 @@ def discussions():
 @app.route('/discussion/<int:discussion_id>')
 def dis_post(discussion_id):
     discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
+    print(discussion)
     #print(discussion)
     #db.session.commit()
-    return render_template('dis_post.html', discussion=discussion) # return the discussion_post object
+    return render_template('dis_posts.html', discussion=discussion) # return the discussion_post object
 
 @app.route('/new_discussion', methods=['POST'])
 def new_discussion():

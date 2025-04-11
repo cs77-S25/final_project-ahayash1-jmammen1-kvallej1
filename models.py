@@ -13,7 +13,7 @@ class Discussion(db.Model):
     comments = db.relationship('Comment', backref='discussion', cascade="all, delete-orphan", lazy=True)
 
     def __repr__(self) -> str:
-        string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Course: {self.course}, Author: {self.author}, Comments: {self.comments}"
+        string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Course: {self.course}, Author: {self.author}"
         return string
     
     def serialize(self):
@@ -45,13 +45,13 @@ class Review(db.Model):
                 "author": self.author,\
                 "created_at": self.created_at}
 
-class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    discussion_id = db.Column(db.Integer, db.ForeignKey('discussion.id'))
-    review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
-    content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    author = db.Column(db.Text, nullable=False)
+# class Comment(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     discussion_id = db.Column(db.Integer, db.ForeignKey('discussion.id'))
+#     review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
+#     content = db.Column(db.Text, nullable=False)
+#     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+#     author = db.Column(db.Text, nullable=False)
 
 # Define the User model
 # with columns: ID (primary key), username, password, date_added

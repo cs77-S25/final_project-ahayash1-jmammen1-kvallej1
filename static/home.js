@@ -21,9 +21,14 @@ document.getElementById("submitForm").addEventListener("click", function (event)
             if(data["success"]==false){
                 window.location.href = "/error";
             } else{
-                form.reset();
+                // form.reset();
                 window.location.href = "/";
             }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+});
         /*discussion = data["discussion"];
         console.log(discussion)
         
@@ -47,8 +52,3 @@ document.getElementById("submitForm").addEventListener("click", function (event)
         // a.appendChild(c);
         // a.appendChild(d);
         // listgrp.prepend(a);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-});

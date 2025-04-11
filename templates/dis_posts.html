@@ -16,13 +16,6 @@
 
     <hr>
 
-    <h3>Comments</h3>
-    <ul class="list-group">
-        {% for comment in discussion.comments %}
-            <li class="list-group-item"> <p>{{ comment.content }}</p> <p>{{ comment.author }}</p> <p>{{ comment.created_at }}</p></li>
-
-        {% endfor %}
-    </ul>
 
     <form action="{{ url_for('comment', discussion_id=discussion.id) }}" method="post" class="mt-3">
         <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
