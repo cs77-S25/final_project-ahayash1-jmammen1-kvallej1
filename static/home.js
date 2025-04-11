@@ -5,25 +5,25 @@ document.getElementById("submitForm").addEventListener("click", function (event)
     let content = document.getElementById("content").value;
     let author = document.getElementById("author").value;
     let course = document.getElementById("course").value;
-    body = JSON.stringify({"title": title, "author": author, "content": content, "course": course}); //deleted "created_at": created_at,
+    body = JSON.stringify({title: title, author: author, content: content, course: course}); //deleted "created_at": created_at,
     //body = {"title": "HIIII"}
     fetch('/new_discussion', {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            Accept: "application/json",
+            "Content-Type": "application/json"
         },
         body: body
     })
-    .then(response => response.json()) // Adjust based on expected response
-    .then(data => {
-        console.log("Success:", data);
-        if(data["success"]==false){
-            window.location.href = "/error";
-        } else{
-            form.reset();
-            window.location.href = "/";
-        }
+        .then(response => response.json()) // Adjust based on expected response
+        .then(data => {
+            console.log("Success:", data);
+            if(data["success"]==false){
+                window.location.href = "/error";
+            } else{
+                form.reset();
+                window.location.href = "/";
+            }
         /*discussion = data["discussion"];
         console.log(discussion)
         
@@ -47,8 +47,8 @@ document.getElementById("submitForm").addEventListener("click", function (event)
         // a.appendChild(c);
         // a.appendChild(d);
         // listgrp.prepend(a);
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-    });
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 });
