@@ -8,3 +8,5 @@
 
 
     Comments: {self.comments}
+
+    <!-- <a href = "{{url_for('discussion', discussion_id=discussion.id)}}" class = "discussion_post"> -->

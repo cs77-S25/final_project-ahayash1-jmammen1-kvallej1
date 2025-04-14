@@ -13,8 +13,6 @@
         <div class="sidebar">
             <br><p1 style="text-align:center;">Navigation</p1>
         </div>
-
-    </div>
         <div class="discussion">
             <br>
             <p1>Welcome to the Discussions!</p1>
@@ -29,32 +27,35 @@
                         <button id="submitForm">Create Post</button>
                     </form>
                 </div>
-    
+                
+                
             </div>
-           
             <div class="discussion_section">
-                <div class="discussion_post">
+                {% for discussion in discussions %}
+                    
+                    <div class = "discussion_post">
                         <div id="header">
                             
                   
-                            <p id="title">title</p1>
-                            <p id="author">author</p>
-                            <p id="course">course</p>
+                            <p id="title">{{discussion.title}}</p1>
+                            <p id="author">{{discussion.author}}</p>
+                            <p id="course">{{discussion.course}}</p>
                                                                        
                         </div>
-                        <p id="content">content</p>  
+                        <p id="content">{{discussion.content}}</p>  
                     
                         <div id="information">
                             
-                            <p id="created_at">created_at</p>
+                            <p id="created_at">{{discussion.created_at}}</p>
                         </div>
                      
-                    </a>
-                </div>
+                    </div>
+                {% endfor %}
                 
                
             </div>
         </div>
+
     </div>
 {%endblock%}
 

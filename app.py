@@ -39,21 +39,20 @@ def discussions():
 
     discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
 
-    #discussions_data=[]
-    # for discussion in discussions:
-    #     # discussions.append({
-    #     #     'id': discussion.id,
-    #     #     'title': discussion.title,
-    #     #     'author': discussion.author,
-    #     #     'created_at': discussion.created_at,
-    #     #     'content': discussion.content,
-    #     #     'course': discussion.course
-    #     #     #'upvotes': discussion.upvotes
-    #     # })
-    #     db.session.commit()
+    discussions_data=[]
+    for discussion in discussions:
+        discussions_data.append({
+            'id': discussion.id,
+            'title': discussion.title,
+            'author': discussion.author,
+            'created_at': discussion.created_at,
+            'content': discussion.content,
+            'course': discussion.course
+            #'upvotes': discussion.upvotes
+        })
+    db.session.commit()
 
-    return render_template('discussions.html', discussions=discussions)
-    #return render_template('discussions.html')
+    return render_template('discussions.html', discussions=discussions_data)
     
 @app.route('/discussion/<int:discussion_id>')
 def dis_post(discussion_id):
@@ -73,7 +72,7 @@ def new_discussion():
 
     created_at = datetime.now()
 
-    discussions = Discussion.query.all()
+    #discussions = Discussion.query.all()
     
     if title and content:
         new_discussion = Discussion(title=title, content=content, author=author, created_at=created_at, course=course)
@@ -83,7 +82,6 @@ def new_discussion():
         db.session.commit()
         print(f"Added new discussion: {new_discussion.serialize()}")  
         return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
-    #return redirect(url_for('discussions')) 
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 

@@ -30,26 +30,26 @@ document.getElementById("submitForm").addEventListener("click", function (event)
             console.error("Error:", error);
         });
 });
-        /*discussion = data["discussion"];
+        discussion = data["discussion"];
         console.log(discussion)
         
         window.location.href = "/";
         window.location.replace("discussions");
-*/
-        // let listgrp = document.getElementsByClassName("list-group")[0];
-        // let a = document.createElement("a");
-        // a.href = `/discussion/${discussion["id"]}`;
-        // a.className = "list-group-item";
-        // let h = document.createElement("h5");
-        // h.appendChild(document.createTextNode(discussion["title"]));
-        // let b = document.createElement("p");
-        // b.appendChild(document.createTextNode(discussion["content"]));
-        // let c = document.createElement("p");
-        // c.appendChild(document.createTextNode(discussion["author"]));
-        // let d = document.createElement("p");
-        // d.appendChild(document.createTextNode(discussion["created_at"]));
-        // a.appendChild(h);
-        // a.appendChild(b);
-        // a.appendChild(c);
-        // a.appendChild(d);
-        // listgrp.prepend(a);
+
+        let listgrp = document.getElementsByClassName("list-group")[0];
+        let a = document.createElement("a");
+        a.href = `/discussion/${discussion["id"]}`;
+        a.className = "list-group-item";
+        let h = document.createElement("h5");
+        h.appendChild(document.createTextNode(discussion["title"]));
+        let b = document.createElement("p");
+        b.appendChild(document.createTextNode(discussion["content"]));
+        let c = document.createElement("p");
+        c.appendChild(document.createTextNode(discussion["author"]));
+        let d = document.createElement("p");
+        d.appendChild(document.createTextNode(discussion["created_at"]));
+        a.appendChild(h);
+        a.appendChild(b);
+        a.appendChild(c);
+        a.appendChild(d);
+        listgrp.prepend(a);
