@@ -95,11 +95,3 @@
     
 }
 
-.upvote {
-    width: 20px;
-    height: 22px;
-    z-index: 50;
-  }
-  .upvote:hover {
-    filter: brightness(2);
-  }

@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 {% block head %}
     {{ super() }}
-<script src="{{ url_for('static', filename='new.js') }}" defer></script>
+<script src="{{ url_for('static', filename='review.js') }}" defer></script>
 {% endblock %}
 
 {%block content %}
     <h1>{{ review.title }}</h1>
     <p>{{ review.content }}</p>
     <p>{{ review.author }}</p>
+    <p>{{ review.rating }}</p>
+    <p>{{ review.major }}</p>
     <p>Comments: {{ num_comments }}</p>
     
     <button type="submit" class="arrow" id="up_votes">↑</button>
     <span id="num_votes">0</span>
-    <button type="submit" class="arrow" id="down_votes">↓</button>
 
 
     <hr>

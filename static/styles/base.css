@@ -118,3 +118,17 @@ p1{
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #c75a56;}
+
+
+.btn {
+    background-color: #800000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: #a04040;
+}

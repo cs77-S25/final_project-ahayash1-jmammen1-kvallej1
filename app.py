@@ -29,6 +29,8 @@ with app.app_context():
 
 #migrate = Migrate(app,db)
 
+#DISCUSSIONSSSS
+
 @app.route('/') 
 def discussions():
     
@@ -48,14 +50,14 @@ def discussions():
             'created_at': discussion.created_at,
             'content': discussion.content,
             'course': discussion.course,
-            # 'upvotes': discussion.upvotes,
+            'up_votes': discussion.up_votes,
         })
     db.session.commit()
 
     return render_template('discussions.html', discussions=discussions_data)
     
 @app.route('/discussion/<int:discussion_id>')
-def dis_post(discussion_id):
+def dis_posts(discussion_id):
     discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
     print(discussion)
     #print(discussion)
@@ -86,6 +88,8 @@ def new_discussion():
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 
+#REVIEWSSSSS
+
 @app.route('/reviews')
 def reviews():
     reviews=Review.query.order_by(Review.created_at.desc()).all()
@@ -100,7 +104,7 @@ def reviews():
             'content': review.content,
             'rating': review.rating,
         })
-    return render_template('reviews.html')
+    return render_template('reviews.html', reviews=reviews_data)
 
 @app.route('/new_review', methods=['POST'])
 def new_review():
@@ -124,6 +128,18 @@ def new_review():
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 
+@app.route('/review/<int:review_id>')
+def rev_post(review_id):
+    review = Review.query.get_or_404(review_id) # returns a 404 error if get fails
+    
+    review = db.session.query(Review).get(review_id)
+
+    return render_template('rev_post.html', review=review)
+
+
+#COMMENTSSSS
+
+
 @app.route('/comment/<int:discussion_id>', methods=['POST'])
 def discussion_comment(discussion_id):
     content = request.form.get('comment')
@@ -145,7 +161,7 @@ def review_comment(review_id):
     created_at = datetime.now()
     
     if content and author:
-        new_comment = Comment(discussion_id=review_id, author=author, created_at=created_at, content=content) # should display created and author
+        new_comment = Comment(review_id=review_id, author=author, created_at=created_at, content=content) # should display created and author
         db.session.add(new_comment)
         print(new_comment)
         db.session.commit()
@@ -170,6 +186,9 @@ def review_comment(review_id):
 #     review_post = Review_post.query.get_or_404(thread_id) # returns a 404 error if get fails
 #     print(review_post)
 #     return render_template('reviews.html', review_post=review_post) # return the review_post object
+
+
+#LOGINNNN
 
 @app.route('/login')
 def login():
@@ -221,15 +240,6 @@ def signup():
             return render_template('signup.html')  # Render the register template
     else:
         return redirect(url_for('discussions'))  # Redirect to the login page
-
-@app.route('/add_review')
-def add_review():
-    return render_template('add_review.html')
-
-@app.route('/add_discussion')
-def add_discussion():
-    return render_template('add_discussion.html')
-
 
 @app.route('/logout')
 def logout():

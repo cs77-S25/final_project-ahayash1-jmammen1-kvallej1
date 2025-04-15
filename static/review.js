@@ -40,7 +40,7 @@ document.getElementById("submitReview").addEventListener("click", function (even
         review = data["review"];
         console.log(review)
         
-        window.location.href = "/rev_posts/id";
+        window.location.href = "/";
         window.location.replace("reviews");
 
         let listgrp = document.getElementsByClassName("list-group")[0];
