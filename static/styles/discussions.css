@@ -94,18 +94,3 @@
     font-size: medium;
     
 }
-
-/* Buttons */
-.btn {
-    background-color: #800000;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    text-decoration: none;
-}
-
-.btn:hover {
-    background-color: #a04040;
-}
-
-
