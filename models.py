@@ -34,9 +34,10 @@ class Review(db.Model):
     rating = db.Column(db.Text, nullable=False)
     author = db.Column(db.Text, nullable=False)
     comments = db.relationship('Comment', backref='review', cascade="all, delete-orphan", lazy=True)
+    major = db.Column(db.Text, nullable=False)
 
     def __repr__(self) -> str:
-        string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Rating: {self.rating}, Author: {self.author}, Comments: {self.comments}"
+        string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Rating: {self.rating}, Author: {self.author}, Comments: {self.comments}, Major: {self.major}"
         return string
     
     def serialize(self):
@@ -45,7 +46,8 @@ class Review(db.Model):
                 "content": self.content,\
                 "rating": self.rating,\
                 "author": self.author,\
-                "created_at": self.created_at}
+                "created_at": self.created_at, \
+                "major": self.major}
 
 class Comment(db.Model):
      id = db.Column(db.Integer, primary_key=True)
