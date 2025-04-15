@@ -107,3 +107,13 @@ def new_review():
         return make_response(jsonify({"success": "true", "review": add_review.serialize()}), 200)
     
     return make_response(jsonify({"success": "false"}), 400)
+
+
+                        <!-- <div class = "upvotes">
+                            <img
+                            id = "{{discussion.id}}"
+                            onClick = "upvote(this)"
+                            src = "{{url_for('static', filename = '/styles/upvote.png')}}"
+                            class = "upvote"
+                            /><img />
+                            <div id="{{discussion.id}}number" class = "center-text"> {{discussion.upvotes}}</div> -->

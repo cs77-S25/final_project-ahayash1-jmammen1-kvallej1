@@ -6,7 +6,7 @@ document.getElementById("submitForm").addEventListener("click", function (event)
     let content = document.getElementById("content").value;
     let author = document.getElementById("author").value;
     let course = document.getElementById("course").value;
-    let upvotes = document.getElementById("upvotes").value;
+    //let upvotes = document.getElementById("upvotes").value;
     body = JSON.stringify({"title": title, "author": author, "content": content, "course": course}); //deleted "created_at": created_at,
     //body = {"title": "HIIII"}
     fetch('/new_discussion', {
@@ -47,30 +47,33 @@ document.getElementById("submitForm").addEventListener("click", function (event)
         b.appendChild(document.createTextNode(discussion["content"]));
         let c = document.createElement("p");
         c.appendChild(document.createTextNode(discussion["author"]));
+        // let g = document.createElement("p");
+        // g.appendChild(document.createTextNode(discussion["upvotes"]));
         let d = document.createElement("p");
         d.appendChild(document.createTextNode(discussion["created_at"]));
         a.appendChild(h);
         a.appendChild(b);
         a.appendChild(c);
         a.appendChild(d);
+        // a.appendChild(g);
         listgrp.prepend(a);
 
-async function upvote(element){
-    console.log(element.id);
-    await fetch('/upvote/${element.id}', {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        },
-    })
-    .then((response) => response.json())
-    .then((responseJSON) => {
-        refreshDiscussions(responseJSON.discussion)
-    })
-}
+// async function upvote(element){
+//     console.log(element.id);
+//     await fetch(`/upvote/${element.id}`, {
+//         method: "POST",
+//         headers: {
+//             Accept: "application/json",
+//             "Content-Type": "application/json",
+//         },
+//     })
+//     .then((response) => response.json())
+//     .then((responseJSON) => {
+//         refreshDiscussions(responseJSON.discussion)
+//     })
+// }
 
-function refreshDiscussions(discussion){
-    let discussion_object = document.getElementById(discussion.id + "number");
-    discussion_object.innerText = discussion.upvotes;
-}
+// function refreshDiscussions(discussion){
+//     let discussion_object = document.getElementById(discussion.id + "number");
+//     discussion_object.innerText = discussion.upvotes;
+// }

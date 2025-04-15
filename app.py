@@ -47,8 +47,8 @@ def discussions():
             'author': discussion.author,
             'created_at': discussion.created_at,
             'content': discussion.content,
-            'course': discussion.course
-            #'upvotes': discussion.upvotes
+            'course': discussion.course,
+            # 'upvotes': discussion.upvotes,
         })
     db.session.commit()
 
@@ -69,6 +69,7 @@ def new_discussion():
     content = form["content"] # add authors field here
     author = form["author"]
     course = form["course"]
+    
 
     created_at = datetime.now()
 
@@ -151,17 +152,17 @@ def review_comment(review_id):
 
     return redirect(url_for('review', review_id=review_id))
 
-@app.route('/upvote/<int:discussion_id>', methods=['POST'])
-def upvote(discussion_id):
-    update_discussion = Discussion.query.get_or_404(discussion_id)
-    if update_discussion:
-        newupvotes = update_discussion.upvotes +1
-        update_discussion.upvotes = newupvotes
-        db.session.commit()
-        return make_response(jsonify({"Success": "true", "discussion": update_discussion.serialize()}), 200)
-    else:
-        print("Discussion not found.")
-    return make_response(jsonify({"Success": "false"}), 400)
+# @app.route('/upvote/<int:discussion_id>', methods=['POST'])
+# def upvote(discussion_id):
+#     update_discussion = Discussion.query.get_or_404(discussion_id)
+#     if update_discussion:
+#         newupvotes = update_discussion.upvotes +1
+#         update_discussion.upvotes = newupvotes
+#         db.session.commit()
+#         return make_response(jsonify({"Success": "true", "discussion": update_discussion.serialize()}), 200)
+#     else:
+#         print("Discussion not found.")
+#     return make_response(jsonify({"Success": "false"}), 400)
 
 
 # @app.route('/review_post/<int:review_id>')
