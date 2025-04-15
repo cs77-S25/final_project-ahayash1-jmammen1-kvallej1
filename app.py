@@ -101,6 +101,28 @@ def reviews():
         })
     return render_template('reviews.html')
 
+@app.route('/new_review', methods=['POST'])
+def new_review():
+    form =  request.get_json()
+    title = form["title"]
+    content = form["content"] # add authors field here
+    author = form["author"]
+    major = form["major"]
+    rating = form["rating"]
+
+    created_at = datetime.now()
+    
+    if title and content:
+        new_review = Review(title=title, content=content, author=author, created_at=created_at, rating=rating, major=major)
+
+        # use .count and  .filterby
+        db.session.add(new_review)
+        db.session.commit()
+        print(f"Added new review: {new_review.serialize()}")  
+        return make_response(jsonify({"success": "true", "review": new_review.serialize()}), 200)
+
+    return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
+
 @app.route('/comment/<int:discussion_id>', methods=['POST'])
 def discussion_comment(discussion_id):
     content = request.form.get('comment')
@@ -128,6 +150,19 @@ def review_comment(review_id):
         db.session.commit()
 
     return redirect(url_for('review', review_id=review_id))
+
+@app.route('/upvote/<int:discussion_id>', methods=['POST'])
+def upvote(discussion_id):
+    update_discussion = Discussion.query.get_or_404(discussion_id)
+    if update_discussion:
+        newupvotes = update_discussion.upvotes +1
+        update_discussion.upvotes = newupvotes
+        db.session.commit()
+        return make_response(jsonify({"Success": "true", "discussion": update_discussion.serialize()}), 200)
+    else:
+        print("Discussion not found.")
+    return make_response(jsonify({"Success": "false"}), 400)
+
 
 # @app.route('/review_post/<int:review_id>')
 # def review_post(review_id):
@@ -185,29 +220,6 @@ def signup():
             return render_template('signup.html')  # Render the register template
     else:
         return redirect(url_for('discussions'))  # Redirect to the login page
-
-
-
-@app.route('/add_review', methods=['POST'])
-def new_review():
-    form = request.get_json()
-    title = form["title"]
-    content = form["content"] # add authors field here
-    author = form["author"]
-
-    created_at = datetime.now()
-    
-    if title and content and author:
-        add_review = Review(title=title, content=content, author=author, created_at=created_at)
-
-        # use .count and  .filterby
-        db.session.add(add_review)
-        db.session.commit()
-        print(f"Added new review: {add_review.serialize()}")
-        
-        return make_response(jsonify({"success": "true", "review": add_review.serialize()}), 200)
-    
-    return make_response(jsonify({"success": "false"}), 400)
 
 @app.route('/add_review')
 def add_review():

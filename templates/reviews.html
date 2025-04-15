@@ -2,80 +2,76 @@
 
 {%block head%}
     {{ super() }}
+    <script src="{{url_for('static', filename='review.js')}}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/reviews.css') }}">
+    
 {% endblock %}
-
-{%block title %} Review Section {% endblock %}
 
 {%block content %}
     <div class="container">
         <div class="sidebar">
-            <br><p1>Navigation</p1>
-            <div class="dropdown">
-                <div id="Dropdown" class="dropdownContent">
-                    <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
-                    <a href="#anch">ANCH</a>
-                    <a href="#artt">ARTT</a>
-                    <a href="#biol">BIOL</a>
-                </div>
-            </div>
-            
+            <br><p1 style="text-align:center;">Navigation</p1>
         </div>
-        
-        <div class="main">
-            <br><p1>Welcome to the Reviews!</p1>
-            <div class="review_section">
-                <div class="review_post">
-                    <div id="header">
-                  
-                        <p id="title">title</p1>
-                        <p id="author">author</p>
-                        <p id="class">class</p>
-                                                                       
-                    </div>
-                    <p id="content">content</p>  
-                   
-                    <p id="rading">rating</p>
-                    
-                    
-                    <div id="information">
-                        <p id="upvotes">upvotes</p>
-                        <p id="created_at">created_at</p>
-                    </div>
-                </div>
-                <div id="add_comment">
-                    <form>
-                        <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
-                        <textarea name="comment" class="form-control mb-2" placeholder="Add comment..." required></textarea>
-                        <button type="submit" class="btn btn-secondary">Post Comment</button>
+        <div class="discussion">
+            <br>
+            <p1>Welcome to Reviews!</p1>
+            <div class="main">
+                <div class="add_post">
+                    <p1>Create New Review</p1>
+                    <form id="form">                       
+                        <input type="text" id="title" placeholder="Post title" required maxlength="50">
+                        <input type="text" id="author" placeholder="By.." required maxlength="50">
+                        <input type="text" id="major" placeholder="Major (optional).." maxlength="50">
+                        <textarea id="content" placeholder="Post content" required></textarea>
+                        <div class="rating_container">
+                            <div class="rating">
+                                <input type="radio" name="rating" id="star5" class="rating-radio" value="5">
+                                <label for="star5"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" name="rating" id="star4" class="rating-radio" value="4">
+                                <label for="star4"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" name="rating" id="star3" class="rating-radio" value="3">
+                                <label for="star3"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" name="rating" id="star2" class="rating-radio" value="2">
+                                <label for="star2"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" name="rating" id="star1" class="rating-radio" value="1">
+                                <label for="star1"><i class="fa-solid fa-star"></i></label>
+                            </div>
+                        </div>
+                        <button id="submitReview">Create Post</button>
                     </form>
                 </div>
-                <div class="review_comments">
-                   
-                    <ul class="list-group">
-                        <li>
-                            <div id="header">
-                                <p id="author">author</p>                                                                                                        
-                            </div>
-                                <p id="content">content</p>
-                            <div id="information">
-                                <p id="created_at">created_at</p>
-                            </div>
-                        </li>
-                       
-                    </ul>
                 
+                
+            </div>
+            <div class="review_section">
+                {% for review in reviews %}
                     
+                    <div class = "review_post">
+                        <div id="header">
+                            
                   
-                </div>
-
+                            <p id="title">{{review.title}}</p1>
+                            <p id="author">{{review.author}}</p>
+                            <p id="major">{{review.major}}</p> 
+                            <p id="rating">{{review.rating}}</p>     
+                        </div>
+                        <p id="content">{{review.content}}</p>  
+                    
+                        <div id="information">
+                            
+                            <p id="created_at">{{review.created_at}}</p>
+                        </div>
+                     
+                    </div>
+                {% endfor %}
+                
+               
             </div>
         </div>
 
-        
     </div>
-
-
 {%endblock%}
 
-<p id="Welcome">Welcome to the Review Section!</p>
+
+

@@ -11,6 +11,7 @@ class Discussion(db.Model):
     course = db.Column(db.Text)
     author = db.Column(db.Text, nullable=False)
     comments = db.relationship('Comment', backref='discussion', cascade="all, delete-orphan", lazy=True)
+    upvotes = db.Column(db.Integer, default = 0)
 
     def __repr__(self) -> str:
         string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Course: {self.course}, Author: {self.author}"
@@ -22,6 +23,7 @@ class Discussion(db.Model):
                 "content": self.content,\
                 "course": self.course,\
                 "author": self.author,\
+                "upvotes": self.upvotes,\
                 "created_at": self.created_at}
 
 class Review(db.Model):

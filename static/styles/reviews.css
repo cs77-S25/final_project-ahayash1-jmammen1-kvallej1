@@ -62,11 +62,11 @@
     height: 100px;
 }
 
-#rating {
+/* #rating {
     border: 1px solid #ddd;
     margin: auto;
     background-color: #f9f9f9;
-}
+} */
 
 #header {
     list-style-type: none;
@@ -97,7 +97,42 @@
     font-size: medium;
 }
 
+.add_post {
+    height: 50vh;
+    width: 50vh;
+    background-color:#c8c0bf;
+    margin: auto;
+    margin-top: 5vh;
+}
 
+.rating_container .rating {
+    direction: rtl;
+}
+
+.rating_container .rating label{
+    display: inline-block;
+    cursor: pointer;
+    color: #ebebeb;
+}
+
+.rating_container .rating label i {
+    font-size: 2rem;
+    transition: 0.1s ease-in
+}
+
+.rating_container .rating label:hover i,
+.rating_container .rating label:hover ~ label i {
+    color: #effea4;
+}
+
+.rating_container .rating .rating-radio {
+    display: none;
+}
+
+.rating_container .rating input[type="radio"]:checked + label i,
+.rating_container .rating input[type="radio"]:checked ~ label i {
+    color: #effea4;
+}
 
 
 
