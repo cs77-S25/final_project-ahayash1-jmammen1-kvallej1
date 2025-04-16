@@ -93,7 +93,22 @@ def new_discussion():
         return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
-   
+
+@app.route('/upvote/<int:discussion_id>', methods=['POST'])
+def upvote(discussion_id):
+    # UPDATE Thread
+    update_discussion = Discussion.query.get_or_404(discussion_id) # check if user exists, return Users object or None
+    if update_discussion: # check if some value (None evaluates to False)
+        newupvotes = update_discussion.up_votes + 1
+        update_discussion.up_votes = newupvotes
+        db.session.commit()
+        return make_response(jsonify({"success": "true", "discussion": update_discussion.serialize()}), 200)
+    else:
+        print("Discussion not found.")
+    # error = False
+    # if error:
+    #     return redirect(url_for('error'))
+    return make_response(jsonify({"success": "false"}), 400) 
 #REVIEWSSSSS
 
 @app.route('/reviews')
