@@ -219,7 +219,27 @@ a{
     
 } 
 
+#comauth {
+    color:rgb(80, 10, 10);
+    font-weight: bold;
+    font-size:small;
+    margin-right:5px;
+    position:relative;
+    float:right;
+}
 
+#comcont {
+    border: 1px solid #ddd; /* Subtle border around posts */
+   
+    margin: auto; /* Space between posts */
+    background-color: #f9f9f9; /* Slightly darker background */
+}
+
+#comcrea{
+    color:rgb(80, 10, 10);
+    
+    font-size:small;
+}
 
 
 

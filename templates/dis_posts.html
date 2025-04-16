@@ -9,8 +9,8 @@
     <div class="whereithappens">
         <div id="header">
             <p id="title">{{discussion.title}}</p1>
-            <p id="author">{{discussion.author}}</p>
-            <p id="course">{{discussion.course}}</p>  
+            <p id="author">By: {{discussion.author}}</p>
+            <p id="course">Course: {{discussion.course}}</p>  
         </div>
 
         <p id="content">{{discussion.content}}</p>  
@@ -37,8 +37,8 @@
 
     <h3>Comments</h3>
     <ul class="list-group">
-        {% for discussion_comment in discussion.discussion_comments %}
-            <li class="list-group-item"> <p>{{ discussion_comment.content }}</p> <p>{{ discussion_comment.author }}</p> <p>{{ comment.created_at }}</p></li>
+        {% for comment in discussion.comments %}
+            <li class="list-group-item"> <p id="comcont">{{ comment.content }}</p> <p id="comauth">{{ comment.author }}</p> <p id="comcrea">{{ comment.created_at }}</p></li>
 
         {% endfor %}
     </ul>
