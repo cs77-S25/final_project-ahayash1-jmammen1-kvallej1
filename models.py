@@ -31,7 +31,7 @@ class Review(db.Model):
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    rating = db.Column(db.Text, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
     author = db.Column(db.Text, nullable=False)
     comments = db.relationship('Comment', backref='review', cascade="all, delete-orphan", lazy=True)
     major = db.Column(db.Text, nullable=False)

@@ -13,48 +13,43 @@
         <div class="sidebar">
             <br><p1 style="text-align:center;">Navigation</p1>
         </div>
-        <div class="discussion">
+        <div class="space">
             <br>
-            <p1>Welcome to the Discussions!</p1>
-            <div class="main">
-                <div class="add_post">
-                    <p1>Create New Discussion</p1>
-                    <form id="form">                       
-                        <input type="text" id="title" placeholder="Post title" required maxlength="50">
-                        <input type="text" id="author" placeholder="By.." required maxlength="50">
-                        <input type="text" id="course" placeholder="Class (optional).." required maxlength="50">
-                        <textarea id="content" placeholder="Post content" required></textarea>
-                        <button id="submitForm">Create Post</button>
-                    </form>
-                </div>
-                
-                
-            </div>
-            <div class="discussion_section">
-                {% for discussion in discussions %}
+            <p2>Discussions Section</p2>
+     
+            <div class="add_post">
+               <p1>Create New Discussion</p1>
+                <form id="form">                       
+                    <input type="text" id="title" placeholder="Post title" required maxlength="50">
+                    <input type="text" id="author" placeholder="By.." required maxlength="50">
+                    <input type="text" id="course" placeholder="Class (optional).." required maxlength="50">
+                    <textarea id="content" placeholder="Post content" required></textarea>
+                    <button id="submitForm">Create Post</button>
+                </form>
+            </div>    
+            <div class="list-group">
+                {% for discussion in discussions %}    
+                    <a href="{{ url_for('dis_posts', discussion_id=discussion.id) }}" class = "list-group-item">
+                       <div class="whereithappens">
+                            <div id="header">
+                                <p id="title">{{discussion.title}}</p1>
+                                <p id="author">By: {{discussion.author}}</p>
+                                <p id="course">Course: {{discussion.course}}</p>  
+                            </div>
+
+                            <p id="content">{{discussion.content}}</p>  
                     
-                    <a href="{{ url_for('discussions', discussion_id=discussion.id) }}" class = "discussion_post">
-                        <div id="header">
-                            
-                  
-                            <p id="title">{{discussion.title}}</p1>
-                            <p id="author">{{discussion.author}}</p>
-                            <p id="course">{{discussion.course}}</p>
+                            <div id="information">             
+                                <p id="up_votes">upvotes: {{discussion.up_votes}}</p>               
+                                <p id="created_at">{{discussion.created_at}}</p>
+                            </div>
                         </div>
-                        <p id="content">{{discussion.content}}</p>  
-                    
-                        <div id="information">             
-                            <p id="up_votes">{{discussion.up_votes}}</p>               
-                            <p id="created_at">{{discussion.created_at}}</p>
-                        </div>
+                        
 
                     </a>
-                {% endfor %}
-                
-               
+                {% endfor %}   
             </div>
         </div>
-
     </div>
 {%endblock%}
 

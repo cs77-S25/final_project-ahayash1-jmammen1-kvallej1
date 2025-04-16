@@ -118,7 +118,7 @@ def new_review():
     created_at = datetime.now()
     
     if title and content:
-        new_review = Review(title=title, content=content, author=author, created_at=created_at, rating=rating, major=major)
+        new_review = Review(title=title, content=content, author=author, created_at=created_at, rating=int(rating), major=major)
 
         # use .count and  .filterby
         db.session.add(new_review)
@@ -127,14 +127,14 @@ def new_review():
         return make_response(jsonify({"success": "true", "review": new_review.serialize()}), 200)
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
-
+    
 @app.route('/review/<int:review_id>')
-def rev_post(review_id):
+def rev_posts(review_id):
     review = Review.query.get_or_404(review_id) # returns a 404 error if get fails
     
     review = db.session.query(Review).get(review_id)
 
-    return render_template('rev_post.html', review=review)
+    return render_template('rev_posts.html', review=review)
 
 
 #COMMENTSSSS
@@ -152,7 +152,7 @@ def discussion_comment(discussion_id):
         print(new_comment)
         db.session.commit()
 
-    return redirect(url_for('discussion', discussion_id=discussion_id)) # set variable thread_id to be thread_id
+    return redirect(url_for('dis_posts', discussion_id=discussion_id)) # set variable thread_id to be thread_id
 
 @app.route('/comment/<int:review_id>', methods=['POST'])
 def review_comment(review_id):
@@ -166,7 +166,7 @@ def review_comment(review_id):
         print(new_comment)
         db.session.commit()
 
-    return redirect(url_for('review', review_id=review_id))
+    return redirect(url_for('rev_posts', review_id=review_id))
 
 # @app.route('/upvote/<int:discussion_id>', methods=['POST'])
 # def upvote(discussion_id):

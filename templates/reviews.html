@@ -13,9 +13,9 @@
         <div class="sidebar">
             <br><p1 style="text-align:center;">Navigation</p1>
         </div>
-        <div class="discussion">
+        <div class="space">
             <br>
-            <p1>Welcome to Reviews!</p1>
+            <p2>Reviews Section</p2>
             <div class="main">
                 <div class="add_post">
                     <p1>Create New Review</p1>
@@ -44,26 +44,36 @@
                 
                 
             </div>
-            <div class="review_section">
+            <div class="list-group">
                 {% for review in reviews %}
                     
-                    <div class = "review_post">
-                        <div id="header">
+                    <a href="{{ url_for('rev_posts', review_id=review.id) }}" class = "list-group-item">>
+                        <div class="whereithappens">
+                            <div id="header">
                             
                   
-                            <p id="title">{{review.title}}</p1>
-                            <p id="author">{{review.author}}</p>
-                            <p id="major">{{review.major}}</p> 
-                            <p id="rating">{{review.rating}}</p>     
-                        </div>
-                        <p id="content">{{review.content}}</p>  
+                                <p id="title">{{review.title}}</p1>
+                                <p id="author">By: {{review.author}}</p>
+                                <p id="major">Major: {{review.major}}</p>    
+                            </div>
+                            <p id="content">{{review.content}}</p>  
                     
-                        <div id="information">
+                            <div id="information">
                             
-                            <p id="created_at">{{review.created_at}}</p>
+                                <p id="created_at">{{review.created_at}}</p>
+                                <div class="stars">
+                                    {% for _ in range(review.rating|int) %}
+                                        <i class="fa-solid fa-star" style = "color: #ffc107"></i>
+                                    {% endfor %}
+                                    {% for _ in range(5 - review.rating|int) %}
+                                        <i class="fa-regular fa-star" style = "color: #ccc"></i>
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
+                        
                      
-                    </div>
+                    </a>
                 {% endfor %}
                 
                

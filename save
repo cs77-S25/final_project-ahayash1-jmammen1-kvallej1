@@ -109,6 +109,92 @@ def new_review():
     return make_response(jsonify({"success": "false"}), 400)
 
 
+
+    main{
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        color:aqua;
+    
+    }
+
+    (238, 234, 234);
+    #e4dfdf
+
+    #add_comment {
+        border: 1px solid #ddd; /* Subtle border around posts */
+        padding: 10px; /* Space inside posts */
+        margin: 5px 0; /* Space between posts */
+        background-color: #e4dfdf; /* Slightly darker background */
+    }
+
+    .disc_comments {
+        border: 1px solid #ddd; /* Subtle border around posts */
+        padding: 20px; /* Space inside posts */
+        margin: 5px 0; /* Space between posts */
+        background-color: #f9f9f9; /* Slightly darker background */
+       
+    }
+
+    #content {
+        border: 1px solid #ddd; /* Subtle border around posts */
+        padding: 10px; /* Space inside posts */
+        margin: auto; /* Space between posts */
+        background-color: #f9f9f9; /* Slightly darker background */
+        height: 100px;
+    }
+    
+    /* #rating {
+        border: 1px solid #ddd;
+        margin: auto;
+        background-color: #f9f9f9;
+    } */
+    
+    #header {
+        list-style-type: none;
+        background-color: #e4dfdf; 
+        padding: 5px;
+        margin: 5px;
+        overflow: hidden;
+        height: 40px;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        text-align: center;
+    }
+    
+    #header p {
+        border: 1px solid rgb(145, 89, 89);
+    }
+    
+    #information {
+        background-color: #f9f9f9; 
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        padding: 5px;
+        margin: 5px;
+        height:30px;
+    }
+    
+    #information p {
+        font-size: medium;
+    }
+
+
+    list-style-type: none;
+    background-color: #e4dfdf; 
+    padding: 5px;
+    margin: 5px;
+    overflow: hidden;
+    height: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    text-align: center;
+
+    border: 1px solid rgb(145, 89, 89);
+
+    #aab0be
+
                         <!-- <div class = "upvotes">
                             <img
                             id = "{{discussion.id}}"

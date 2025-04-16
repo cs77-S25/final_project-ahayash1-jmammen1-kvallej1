@@ -5,21 +5,46 @@
 {% endblock %}
 
 {%block content %}
-    <h1>{{ discussion.title }}</h1>
-    <p>{{ discussion.content }}</p>
-    <p>{{ discussion.author }}</p>
+<div class="specificpost">
+    <div class="whereithappens">
+        <div id="header">
+            <p id="title">{{discussion.title}}</p1>
+            <p id="author">{{discussion.author}}</p>
+            <p id="course">{{discussion.course}}</p>  
+        </div>
+
+        <p id="content">{{discussion.content}}</p>  
+
+        <div id="information">             
+            <p id="up_votes">{{discussion.up_votes}}</p>               
+            <p id="created_at">{{discussion.created_at}}</p>
+        </div>
     
-    <div id = "upbutton">
-        <button type="submit" class="arrow" id="up_votes">↑</button>
-        <span id="up_votes">0</span>
+    
+        <div id = "upbutton">
+            <button type="submit" class="arrow" id="up_votes">↑</button>
+            <span id="up_votes">0</span>
+        </div>        
+        </div>
     </div>
-   
+    
+
+
+    <hr>
+
+    <h3>Comments</h3>
+    <ul class="list-group">
+        {% for discussion_comment in discussion.discussion_comments %}
+            <li class="list-group-item"> <p>{{ discussion_comment.content }}</p> <p>{{ discussion_comment.author }}</p> <p>{{ comment.created_at }}</p></li>
+
+        {% endfor %}
+    </ul>
 
 
     <hr>
 
 
-    <form action="{{ url_for('comment', discussion_id=discussion.id) }}" method="post" class="mt-3">
+    <form action="{{ url_for('discussion_comment', discussion_id=discussion.id) }}" method="post" class="mt-3">
         <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
         <textarea name="comment" class="form-control mb-2" placeholder="Reply..." required></textarea>
         <button type="submit" class="btn btn-secondary">Post Comment</button>

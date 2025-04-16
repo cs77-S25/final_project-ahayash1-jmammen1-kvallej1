@@ -1,109 +1,15 @@
-.container {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    height: 100vh;
-}
 
-.main {
 
-    background: rgb(238, 234, 234);
-   
-}
 
-.sidebar {
-    background:#e4dfdf;
-    border: 1px solid #ccc;
-    border-radius: 5px; /* Slightly rounded corners */
-}
 
-#Welcome {
-    text-align: center;
-    font-size: 24px;
-    color: #b29cc4; /* Dark purple */
-}
 
-.review_section {
-    background-color: #ffffff; /* White background for threads */
-    border: 1px solid #ccc; /* Light border */
-    padding: 10px; /* Space inside the thread */
-    margin: 10px 0; /* Space between threads */
-    border-radius: 5px; /* Slightly rounded corners */
-}
 
-.review_post {
-    border: 1px solid #ddd; /* Subtle border around posts */
-    padding: 10px; /* Space inside posts */
-    margin: 5px 0; /* Space between posts */
-    background-color: #f9f9f9; /* Slightly darker background */
-   
-}
 
-.review_comments {
-    border: 1px solid #ddd; /* Subtle border around posts */
-    padding: 20px; /* Space inside posts */
-    margin: 5px 0; /* Space between posts */
-    background-color: #f9f9f9; /* Slightly darker background */
-   
-}
 
-#add_comment {
-    border: 1px solid #ddd; /* Subtle border around posts */
-    padding: 10px; /* Space inside posts */
-    margin: 5px 0; /* Space between posts */
-    background-color: #e4dfdf; /* Slightly darker background */
-   
-}
 
-#content {
-    border: 1px solid #ddd; /* Subtle border around posts */
-    padding: 10px; /* Space inside posts */
-    margin: auto; /* Space between posts */
-    background-color: #f9f9f9; /* Slightly darker background */
-    height: 100px;
-}
 
-/* #rating {
-    border: 1px solid #ddd;
-    margin: auto;
-    background-color: #f9f9f9;
-} */
 
-#header {
-    list-style-type: none;
-    background-color: #e4dfdf; 
-    padding: 5px;
-    margin: 5px;
-    overflow: hidden;
-    height: 40px;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    text-align: center;
-}
-
-#header p {
-    border: 1px solid rgb(145, 89, 89);
-}
-
-#information {
-    background-color: #f9f9f9; 
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    padding: 5px;
-    margin: 5px;
-    height:30px;
-}
-
-#information p {
-    font-size: medium;
-}
-
-.add_post {
-    height: 50vh;
-    width: 50vh;
-    background-color:#c8c0bf;
-    margin: auto;
-    margin-top: 5vh;
-}
+/* RATING */
 
 .rating_container .rating {
     direction: rtl;
@@ -122,7 +28,7 @@
 
 .rating_container .rating label:hover i,
 .rating_container .rating label:hover ~ label i {
-    color: #effea4;
+    color: #571708;
 }
 
 .rating_container .rating .rating-radio {
@@ -131,7 +37,7 @@
 
 .rating_container .rating input[type="radio"]:checked + label i,
 .rating_container .rating input[type="radio"]:checked ~ label i {
-    color: #effea4;
+    color: #571708;
 }
 
 

@@ -11,9 +11,16 @@ document.getElementById("submitReview").addEventListener("click", function (even
     let rating3= document.getElementById("star3").value;
     let rating2 = document.getElementById("star2").value;
     let rating1 = document.getElementById("star1").value;
-    let rating = 5;
+    let selectedRatingInput = document.querySelector('input[name="rating"]:checked');
+    let rating = selectedRatingInput ? selectedRatingInput.value : null;
+
+    if (!rating) {
+        alert("Please select star rating.")
+        return;
+    }
     // body = JSON.stringify({"title": title, "author": author, "content": content, "major": major, "rating1": rating1, "rating2": rating2, "rating3": rating3, "rating4": rating4, "rating5": rating5}); //deleted "created_at": created_at,
-    body = JSON.stringify({"title": title, "author": author, "content": content, "major": major, "rating": rating}); //deleted "created_at": created_at,
+    let body = JSON.stringify({"title": title, "author": author, "content": content, "major": major, "rating": rating}); //deleted "created_at": created_at,
+
     console.log(body)
     //body = {"title": "HIIII"}
     fetch('/new_review', {
@@ -40,8 +47,8 @@ document.getElementById("submitReview").addEventListener("click", function (even
         review = data["review"];
         console.log(review)
         
-        window.location.href = "/";
-        window.location.replace("reviews");
+        window.location.href = `/review/${review.id}`;
+        // window.location.replace("reviews");
 
         let listgrp = document.getElementsByClassName("list-group")[0];
         let a = document.createElement("a");
