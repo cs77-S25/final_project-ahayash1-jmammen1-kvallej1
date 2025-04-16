@@ -75,7 +75,7 @@ def new_discussion():
     form =  request.get_json()
     title = form["title"]
     content = form["content"] # add authors field here
-    author = form["author"]
+    author = session["username"]
     course = form["course"]
     
 
@@ -132,7 +132,7 @@ def new_review():
     form =  request.get_json()
     title = form["title"]
     content = form["content"] # add authors field here
-    author = form["author"]
+    author = session["username"]
     major = form["major"]
     rating = form["rating"]
 
@@ -211,11 +211,11 @@ def review_comment(review_id):
 
 #LOGINNNN
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if 'user_id' not in session:
         if request.method == 'POST':  # If the form is submitted
-            username = request.form['username']  # Get the username from the form
+            username = request.form.get('username')  # Get the username from the form
             password = request.form['password']  # Get the password from the form
             user = User.query.filter_by(username=username).first()  # Query the user by username
             
@@ -246,13 +246,17 @@ def generate_password(a):
     return a
     
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if 'user_id' not in session:
         if request.method == 'POST':  # If the form is submitted
             username = request.form['username']  # Get the username from the form
             password = request.form['password']  # Get the password from the form
+            email = request.form['email']
+            #check if email is swarthmore
+            print(username)
             new_password = generate_password(password) 
+           
             new_user = User(username=username, password=new_password)  # Create a new user object
             db.session.add(new_user)  # Add the new user to the session
             db.session.commit()  # Commit the session to the database

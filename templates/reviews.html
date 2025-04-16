@@ -2,7 +2,7 @@
 
 {%block head%}
     {{ super() }}
-    <script src="{{url_for('static', filename='review.js')}}" defer></script>
+    <script src="{{url_for('static', filename='js/review.js')}}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/reviews.css') }}">
     
@@ -21,7 +21,7 @@
                     <p1>Create New Review</p1>
                     <form id="form">                       
                         <input type="text" id="title" placeholder="Post title" required maxlength="50">
-                        <input type="text" id="author" placeholder="By.." required maxlength="50">
+                       
                         <input type="text" id="major" placeholder="Major (optional).." maxlength="50">
                         <textarea id="content" placeholder="Post content" required></textarea>
                         <div class="rating_container">

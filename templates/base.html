@@ -30,6 +30,15 @@
                 <li>
                     <a href="{{ url_for('reviews') }}">Reviews</a>
                 </li>
+                <li class="settings">
+                    <div class="dropdown">
+                        <button class="dropdownbtn">{{session.username}}</button>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('logout') }}">Logout</a>
+                        </div>
+                    </div>
+
+                </li>
                 
  
             </ul>

@@ -1,20 +1,16 @@
 {% extends "base.html" %}
-<script src="{{ url_for('static', filename='home.js') }}" defer></script>
-<!-- {% block head %}
+{% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/error.css') }}"> -->
-<!-- {% endblock %} -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+{% endblock %}
 
-<!-- {% block title %} 
-Error
-{% endblock %} -->
 
-{% endblock %} {% block content %}
+{% block content %}
 
-<!-- <div class="error-container">
+<div class="error-container">
     <h1>Oops! Something went wrong.</h1>
     <p>We're sorry, but {% if error %} {{error}} {% endif %}</p>
-    <a href="{{ url_for('discussions') }}" class="btn btn-primary">Go to Homepage</a>
-</div> -->
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Back to Login</a>
+</div>
 
 {% endblock %}

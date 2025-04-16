@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
     {{ super() }}
-<script src="{{ url_for('static', filename='post.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/post.js') }}" defer></script>
 {% endblock %}
 
 {%block content %}
@@ -16,11 +16,17 @@
         <p id="content">{{discussion.content}}</p>  
 
         <div id="information">
-            <div id="upbutton">
-                <button type="submit" class="arrow" id="pic_votes">↑</button>
-                <span id="up_votes">0</span>    
-            </div> 
-                                  
+            
+            <div class="upvote-count">
+                <img
+                  id="{{discussion.id}}"
+                  onclick="upvote(this)"
+                  src="{{url_for('static',
+                    filename='upvote.png')}}"
+                  class="upvote"
+                /><img />  
+             </div>  
+                                   
             <p id="created_at">{{discussion.created_at}}</p>
         </div>
     
@@ -28,7 +34,7 @@
        
         
               
-        </div>
+        
     </div>
     
 

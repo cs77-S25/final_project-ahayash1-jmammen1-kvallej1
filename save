@@ -203,3 +203,14 @@ def new_review():
                             class = "upvote"
                             /><img />
                             <div id="{{discussion.id}}number" class = "center-text"> {{discussion.upvotes}}</div> -->
+                            <input type="text" id="username" placeholder="Username..." required maxlength="50">
+                            <p>Please enter a password:</p>
+                            <input type="text" id="password" placeholder="Password..." required maxlength="50">
+                            <p>Please enter College email ending in swarthmore.edu:</p>
+                            <input type="text" id="email" placeholder="Email..." required maxlength="50">
+                            <button id="signupbutton"type="submit">Sign up:</button>
+
+                            <div id="upbutton">
+                                <button type="submit" class="arrow" id="pic_votes">↑</button>
+                                <span id="up_votes">0</span>    
+                            </div> 

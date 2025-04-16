@@ -1,27 +1,45 @@
-{% extends "base.html" %}
-{%block head%}
-    {{ super() }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwatShare</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/signup.css') }}">
-{% endblock %}
-
-
-{%block content %}
+   
+   
+</head>
+<body>
     <div class="container">
         <div class="signup">
             <p1>Sign up to create an account</p1>
-            <form>
+            <form action="{{ url_for('signup') }}" method="post">
+                <div>
+                    <label for="username">Please enter a username::</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <br>
+                <div>
+                    <label for="password">Please enter a password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <br>
+                <div>
+                    <label for="email">Please enter College email ending in swarthmore.edu:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <br>
+                <div>
+                    <button type="submit">Sign up</button>
+                </div>
                 <p>Please enter a username:</p>
-                <input type="text" id="username" placeholder="Username..." required maxlength="50">
-                <p>Please enter a password:</p>
-                <input type="text" id="password" placeholder="Password..." required maxlength="50">
-                <p>Please enter College email ending in swarthmore.edu:</p>
-                <input type="text" id="email" placeholder="Email..." required maxlength="50">
-                <p>Please enter the name that you would like to appear on your account:</p>
-                <input type="text" id="screenname" placeholder="Screen name"required maxlength="50">
-                <button type="submit">Sign up:</button>
-            <!-- how to add discussion or review and if so, rating and major -->
-             <p>Back to <a href="{{ url_for('login') }}">Login </a></p>
+                
+          
+             
             </form>
+            <p>Back to <a href="{{ url_for('login') }}">Login </a></p>
         </div>
     </div>
-{%endblock%}
+</body>
+</html>

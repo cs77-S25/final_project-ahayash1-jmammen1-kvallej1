@@ -4,13 +4,8 @@ document.getElementById("submitReview").addEventListener("click", function (even
     let form = document.getElementById("form");
     let title = document.getElementById("title").value;
     let content = document.getElementById("content").value;
-    let author = document.getElementById("author").value;
+    
     let major = document.getElementById("major").value;
-    let rating5 = document.getElementById("star5").value;
-    let rating4 = document.getElementById("star4").value;
-    let rating3= document.getElementById("star3").value;
-    let rating2 = document.getElementById("star2").value;
-    let rating1 = document.getElementById("star1").value;
     let selectedRatingInput = document.querySelector('input[name="rating"]:checked');
     let rating = selectedRatingInput ? selectedRatingInput.value : null;
 
@@ -19,7 +14,7 @@ document.getElementById("submitReview").addEventListener("click", function (even
         return;
     }
     // body = JSON.stringify({"title": title, "author": author, "content": content, "major": major, "rating1": rating1, "rating2": rating2, "rating3": rating3, "rating4": rating4, "rating5": rating5}); //deleted "created_at": created_at,
-    let body = JSON.stringify({"title": title, "author": author, "content": content, "major": major, "rating": rating}); //deleted "created_at": created_at,
+    let body = JSON.stringify({"title": title, "content": content, "major": major, "rating": rating}); //deleted "created_at": created_at,
 
     console.log(body)
     //body = {"title": "HIIII"}
