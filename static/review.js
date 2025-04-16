@@ -37,7 +37,7 @@ document.getElementById("submitReview").addEventListener("click", function (even
             if(data["success"]==false){
                 window.location.href = "/error";
             } else{
-                window.location.href = "/";
+                window.location.href = "/reviews";
             }
         })
         .catch((error) => {
@@ -47,7 +47,7 @@ document.getElementById("submitReview").addEventListener("click", function (even
         review = data["review"];
         console.log(review)
         
-        window.location.href = `/review/${review.id}`;
+        window.location.href = ["/reviews"];
         // window.location.replace("reviews");
 
         let listgrp = document.getElementsByClassName("list-group")[0];

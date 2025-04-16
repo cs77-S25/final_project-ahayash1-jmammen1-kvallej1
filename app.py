@@ -29,9 +29,15 @@ with app.app_context():
 
 #migrate = Migrate(app,db)
 
+
+
+
+
+
+
 #DISCUSSIONSSSS
 
-@app.route('/') 
+@app.route('/discussions') 
 def discussions():
     
     # if 'user_id' in session:
@@ -52,7 +58,7 @@ def discussions():
             'course': discussion.course,
             'up_votes': discussion.up_votes,
         })
-    db.session.commit()
+    # db.session.commit()
 
     return render_template('discussions.html', discussions=discussions_data)
     
@@ -87,7 +93,7 @@ def new_discussion():
         return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
-
+   
 #REVIEWSSSSS
 
 @app.route('/reviews')
@@ -190,7 +196,7 @@ def review_comment(review_id):
 
 #LOGINNNN
 
-@app.route('/login')
+@app.route('/')
 def login():
     if 'user_id' not in session:
         if request.method == 'POST':  # If the form is submitted

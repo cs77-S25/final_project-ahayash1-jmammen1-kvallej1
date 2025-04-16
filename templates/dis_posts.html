@@ -15,16 +15,19 @@
 
         <p id="content">{{discussion.content}}</p>  
 
-        <div id="information">             
-            <p id="up_votes">{{discussion.up_votes}}</p>               
+        <div id="information">
+            <div id="upbutton">
+                <button type="submit" class="arrow" id="pic_votes">↑</button>
+                <span id="up_votes">0</span>    
+            </div> 
+                                  
             <p id="created_at">{{discussion.created_at}}</p>
         </div>
     
     
-        <div id = "upbutton">
-            <button type="submit" class="arrow" id="up_votes">↑</button>
-            <span id="up_votes">0</span>
-        </div>        
+       
+        
+              
         </div>
     </div>
     

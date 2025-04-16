@@ -1,15 +1,11 @@
-.container {
-    height: 100vh;
-    padding-top: 5vh;
-   
-}
+
 
 #login {
-    height: 25vh;
-    width: 50vh;
-    background-color:#c8c0bf;
+    height: 20vh;
+    width: 20vh;
+    background-color:#bdc3d2;;
     border: 1px solid rgb(111, 68, 68); /* Light border */
-    margin:auto;
+    margin: auto;
     border-radius: 10px; /* Slightly rounded corners */
     padding: 10px;  
 }

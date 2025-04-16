@@ -24,7 +24,7 @@ document.getElementById("submitForm").addEventListener("click", function (event)
                 window.location.href = "/error";
             } else{
                 // form.reset();
-                window.location.href = "/";
+                window.location.href = ["/discussions"];
             }
         })
         .catch((error) => {
@@ -34,8 +34,8 @@ document.getElementById("submitForm").addEventListener("click", function (event)
         discussion = data["discussion"];
         console.log(discussion)
         
-        window.location.href = "/";
-        window.location.replace("discussions");
+      
+        window.location.replace("/discussions");
 
         let listgrp = document.getElementsByClassName("list-group")[0];
         let a = document.createElement("a");
