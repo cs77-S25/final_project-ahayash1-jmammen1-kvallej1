@@ -4,7 +4,7 @@ from flask_cors import CORS
 from models import db, Discussion, Review, Comment, User
 from datetime import date, timedelta, datetime
 from flask_migrate import Migrate
-
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -67,15 +67,17 @@ def home():
 
 #DISCUSSIONSSSS
 
-@app.route('/discussions') 
+@app.route('/discussions', methods=['POST','GET']) 
 def discussions():
+    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+    
     
     # if 'user_id' in session:
     #      messsage = "Welcome, logged in user"
     # else:
     #      message = "Welcome, please log in."
 
-    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
 
     discussions_data=[]
     for discussion in discussions:
@@ -91,7 +93,93 @@ def discussions():
     # db.session.commit()
 
     return render_template('discussions.html', discussions=discussions_data)
+
+
+
+@app.route('/discussions1', methods=['POST','GET']) 
+def discussions1():
+    discussions=Discussion.query.order_by(Discussion.up_votes.asc()).all()
     
+    
+    # if 'user_id' in session:
+    #      messsage = "Welcome, logged in user"
+    # else:
+    #      message = "Welcome, please log in."
+
+    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+
+    discussions_data=[]
+    for discussion in discussions:
+        discussions_data.append({
+            'id': discussion.id,
+            'title': discussion.title,
+            'author': discussion.author,
+            'created_at': discussion.created_at,
+            'content': discussion.content,
+            'course': discussion.course,
+            'up_votes': discussion.up_votes,
+        })
+    # db.session.commit()
+
+    return render_template('discussions.html', discussions=discussions_data)
+
+
+@app.route('/discussions2', methods=['POST','GET']) 
+def discussions2():
+    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+    
+    
+    # if 'user_id' in session:
+    #      messsage = "Welcome, logged in user"
+    # else:
+    #      message = "Welcome, please log in."
+
+    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+
+    discussions_data=[]
+    for discussion in discussions:
+        discussions_data.append({
+            'id': discussion.id,
+            'title': discussion.title,
+            'author': discussion.author,
+            'created_at': discussion.created_at,
+            'content': discussion.content,
+            'course': discussion.course,
+            'up_votes': discussion.up_votes,
+        })
+    # db.session.commit()
+
+    return render_template('discussions.html', discussions=discussions_data)
+
+
+@app.route('/discussions3', methods=['POST','GET']) 
+def discussions3():
+    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+    
+    
+    # if 'user_id' in session:
+    #      messsage = "Welcome, logged in user"
+    # else:
+    #      message = "Welcome, please log in."
+
+    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
+
+    discussions_data=[]
+    for discussion in discussions:
+        discussions_data.append({
+            'id': discussion.id,
+            'title': discussion.title,
+            'author': discussion.author,
+            'created_at': discussion.created_at,
+            'content': discussion.content,
+            'course': discussion.course,
+            'up_votes': discussion.up_votes,
+        })
+    # db.session.commit()
+
+    return render_template('discussions.html', discussions=discussions_data)
+
+
 @app.route('/discussion/<int:discussion_id>')
 def dis_posts(discussion_id):
     discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails

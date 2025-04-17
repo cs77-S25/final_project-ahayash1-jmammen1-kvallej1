@@ -14,7 +14,7 @@ class Discussion(db.Model):
     up_votes = db.Column(db.Integer, default = 0)
 
     def __repr__(self) -> str:
-        string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Course: {self.course}, Author: {self.author}"
+        string = f"ID: {self.id}, Title: {self.title}, Content: {self.content}, Created_At: {self.created_at}, Course: {self.course}, Author: {self.author}, Upvotes: {self.up_votes}"
         return string
     
     def serialize(self):

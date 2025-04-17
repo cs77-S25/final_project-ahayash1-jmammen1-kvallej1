@@ -1,5 +1,5 @@
 body {
-    margin:0;
+    margin: 0;
     padding: 0;
 }
 
@@ -10,9 +10,9 @@ body {
 .navbar {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-   
-    background-color:rgb(162, 113, 111);
-   
+
+    background-color: rgb(162, 113, 111);
+
     position: fixed;
     top: 0px;
     width: 100%;
@@ -21,34 +21,34 @@ body {
 
 }
 
-.navbar ul{
+.navbar ul {
     list-style-type: none;
-    background-color:rgb(36, 44, 128);
+    background-color: rgb(36, 44, 128);
     padding: 0px;
     margin: 0px;
     /* overflow: hidden; */
     height: 60px;
 }
 
-.navbar a{
-    color:aliceblue;
+.navbar a {
+    color: aliceblue;
     text-decoration: none;
     padding: 15px;
-    display:block;
+    display: block;
     text-align: center;
     height: 60px;
- 
+
 }
 
-.navbar a:hover{
-    background-color:rgb(104, 120, 158);
+.navbar a:hover {
+    background-color: rgb(104, 120, 158);
     height: 30px;
-   
+
 }
 
-.navbar li{
-    float:left;
-    
+.navbar li {
+    float: left;
+
 }
 
 .logo {
@@ -60,30 +60,31 @@ body {
     width: 60px;
 }
 
-.navbar ul .settings{
+.navbar ul .settings {
     float: right;
     padding-right: 10px;
-    padding-top:15px;
-    font-size:small;
-    
+    padding-top: 15px;
+    font-size: small;
+
 }
 
-p1{
-    color:rgb(80, 10, 10);
+p1 {
+    color: rgb(80, 10, 10);
     font-weight: bold;
-    font-size:large;
-}
-p2{
-    color:rgb(80, 10, 10);
-    font-weight: bold;
-    font-size:xx-large;
-    text-align:center;
+    font-size: large;
 }
 
-a{
-    color:rgb(80, 10, 10);
+p2 {
+    color: rgb(80, 10, 10);
     font-weight: bold;
-    font-size:medium;
+    font-size: xx-large;
+    text-align: center;
+}
+
+a {
+    color: rgb(80, 10, 10);
+    font-weight: bold;
+    font-size: medium;
     text-decoration: none;
 }
 
@@ -99,9 +100,10 @@ a{
 
 
 .sidebar {
-    background:#e4dfdf;
+    background: #e4dfdf;
     border: 1px solid #ccc;
-    border-radius: 5px; /* Slightly rounded corners */
+    border-radius: 5px;
+    /* Slightly rounded corners */
     padding-top: 50px;
 }
 
@@ -113,7 +115,7 @@ a{
 .add_post {
     height: 20vh;
     width: 50vh;
-    background-color:#bfc1c8;
+    background-color: #bfc1c8;
     margin: auto;
     padding: 10px;
     border: 1px solid #ddd;
@@ -124,7 +126,7 @@ a{
     height: 10vh;
     width: 45vh;
     margin: auto;
-  
+
 }
 
 
@@ -134,41 +136,52 @@ a{
 
 
 .list-group {
-    background-color: #ffffff; /* White background for threads */
-    border: 1px solid #ccc; /* Light border */
-    padding: 10px; /* Space inside the thread */
-    margin: 10px ; /* Space between threads */
-    border-radius: 5px; /* Slightly rounded corners */
+    background-color: #ffffff;
+    /* White background for threads */
+    border: 1px solid #ccc;
+    /* Light border */
+    padding: 10px;
+    /* Space inside the thread */
+    margin: 10px;
+    /* Space between threads */
+    border-radius: 5px;
+    /* Slightly rounded corners */
 }
 
 .list-group-item {
-   
-    padding: 10px; /* Space inside posts */
-    margin: 10px ; /* Space between posts */
-  
+
+    padding: 10px;
+    /* Space inside posts */
+    margin: 10px;
+    /* Space between posts */
+
 }
 
-.whereithappens{
+.whereithappens {
     padding: 10px;
     background-color: #bdc3d2;
     border: 1px solid #a89c94;
     margin-bottom: 20px;
-    border-radius: 5px; /* Slightly rounded corners */
+    border-radius: 5px;
+    /* Slightly rounded corners */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.specificpost{
-    margin:100px;
+.specificpost {
+    margin: 100px;
 }
 
 
 #content {
-    border: 1px solid #ddd; /* Subtle border around posts */
-   
-    margin: auto; /* Space between posts */
-    background-color: #f9f9f9; /* Slightly darker background */
+    border: 1px solid #ddd;
+    /* Subtle border around posts */
 
-    
+    margin: auto;
+    /* Space between posts */
+    background-color: #f9f9f9;
+    /* Slightly darker background */
+
+
 }
 
 
@@ -191,64 +204,67 @@ a{
  */
 
 
- #header #title{
-    color:rgb(80, 10, 10);
+#header #title {
+    color: rgb(80, 10, 10);
     font-weight: bolder;
-    font-size:large;
+    font-size: large;
     text-align: center;
 }
 
-#header #author{
-    color:rgb(80, 10, 10);
+#header #author {
+    color: rgb(80, 10, 10);
     font-weight: bold;
-    font-size:small;
-    margin-right:5px;
-    position:relative;
-    float:right;
+    font-size: small;
+    margin-right: 5px;
+    position: relative;
+    float: right;
 }
 
-#header #course{
-    color:rgb(80, 10, 10);
-    
-    font-size:small;
+#header #course {
+    color: rgb(80, 10, 10);
+
+    font-size: small;
 }
 
 
 #information {
-  
+
     display: grid;
     grid-template-columns: repeat(3, auto);
     padding: 5px;
     margin: 5px;
-    height:10px;
-    
+    height: 10px;
+
 }
 
 #information p {
     font-size: small;
-    
-} 
+
+}
 
 #comauth {
-    color:rgb(80, 10, 10);
+    color: rgb(80, 10, 10);
     font-weight: bold;
-    font-size:small;
-    margin-right:5px;
-    position:relative;
-    float:right;
+    font-size: small;
+    margin-right: 5px;
+    position: relative;
+    float: right;
 }
 
 #comcont {
-    border: 1px solid #ddd; /* Subtle border around posts */
-   
-    margin: auto; /* Space between posts */
-    background-color: #f9f9f9; /* Slightly darker background */
+    border: 1px solid #ddd;
+    /* Subtle border around posts */
+
+    margin: auto;
+    /* Space between posts */
+    background-color: #f9f9f9;
+    /* Slightly darker background */
 }
 
-#comcrea{
-    color:rgb(80, 10, 10);
-    
-    font-size:small;
+#comcrea {
+    color: rgb(80, 10, 10);
+
+    font-size: small;
 }
 
 
@@ -257,27 +273,27 @@ a{
 .dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #c3c5d5;
-  
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
- 
+
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
     z-index: 1;
-  }
-  
-  .dropdown:hover .dropdown-content {
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
-  }
+}
 
 /* POTENTIALLY EXTRANEOUS */
 
-  
-  /* The container <div> - needed to position the dropdown content */
-  /* .dropbtn {
+
+/* The container <div> - needed to position the dropdown content */
+/* .dropbtn {
     background-color: #f9f7f6;
     color: rgb(80, 10, 10);
     padding: 16px;
@@ -291,7 +307,7 @@ a{
   }
   
   /* Dropdown Content (Hidden by Default) */
-  /* .dropdown-content {
+/* .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f7f6;
@@ -299,27 +315,27 @@ a{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     
   } */
-  
-  /* Links inside the dropdown */
-  /* .dropdown-content a {
+
+/* Links inside the dropdown */
+/* .dropdown-content a {
     color: rgb(80, 10, 10);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
   } */
-  
-  /* Change color of dropdown links on hover */
-  /* .dropdown-content a:hover {background-color: #ddd;} */
-  
-  /* Show the dropdown menu on hover */
-  /* .dropdown:hover .dropdown-content {display: block;} */
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  /* .dropdown:hover .dropbtn {background-color: #c75a56;} */ 
+
+/* Change color of dropdown links on hover */
+/* .dropdown-content a:hover {background-color: #ddd;} */
+
+/* Show the dropdown menu on hover */
+/* .dropdown:hover .dropdown-content {display: block;} */
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+/* .dropdown:hover .dropbtn {background-color: #c75a56;} */
 
 
 .btn {
-    
+
     background-color: #a6a5af;
     color: rgb(75, 71, 132);
     border: none;
@@ -338,6 +354,7 @@ a{
     height: 22px;
     z-index: 50;
 }
+
 .upvote:hover {
     filter: brightness(2);
 }
@@ -346,4 +363,8 @@ a{
     position: absolute;
     right: 7px;
     bottom: 0;
+}
+
+.info {
+    width: 100px;
 }
