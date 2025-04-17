@@ -33,6 +33,36 @@ with app.app_context():
 
 
 
+@app.route('/home')
+def home():
+    discussions=db.session.query(Discussion).filter_by(author=session["username"]).all()
+    reviews=db.session.query(Review).filter_by(author=session["username"]).all()
+    
+    
+    posts_data=[]
+    for discussion in discussions:
+        posts_data.append({
+            'id': discussion.id,
+            'title': discussion.title,
+            'author': discussion.author,
+            'created_at': discussion.created_at,
+            'content': discussion.content,
+            'course': discussion.course,
+            'up_votes': discussion.up_votes,
+        })
+    for review in reviews:
+        posts_data.append({
+            'id': review.id,
+            'title': review.title,
+            'author': review.author,
+            'created_at': review.created_at,
+            'content': review.content,
+            'rating': review.rating,
+        })
+
+
+    return render_template('home.html', posts=posts_data)
+
 
 
 #DISCUSSIONSSSS
@@ -164,7 +194,7 @@ def rev_posts(review_id):
 @app.route('/comment/<int:discussion_id>', methods=['POST'])
 def discussion_comment(discussion_id):
     content = request.form.get('comment')
-    author = request.form.get('author')
+    author = session["username"]
     created_at = datetime.now()
     
     if content and author:
@@ -178,7 +208,7 @@ def discussion_comment(discussion_id):
 @app.route('/comment/<int:review_id>', methods=['POST'])
 def review_comment(review_id):
     content = request.form.get('comment')
-    author = request.form.get('author')
+    author = session["username"]
     created_at = datetime.now()
     
     if content and author:
@@ -223,7 +253,7 @@ def login():
                 session['user_id'] = user.id  # Set the user ID in the session
                 session['username'] = user.username
                 session.permanent = True
-                return redirect(url_for('discussions'))  # Redirect to homepage
+                return redirect(url_for('home'))  # Redirect to homepage
             else:
                 error = "your username or password do not match."
                 return render_template('error.html', error=error) # Display error page

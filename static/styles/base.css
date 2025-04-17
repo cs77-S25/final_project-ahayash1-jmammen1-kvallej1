@@ -102,6 +102,7 @@ a{
     background:#e4dfdf;
     border: 1px solid #ccc;
     border-radius: 5px; /* Slightly rounded corners */
+    padding-top: 50px;
 }
 
 .space {

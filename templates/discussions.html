@@ -12,8 +12,19 @@
 {%block content %}
     <div class="container">
         <div class="sidebar">
-            <br><p1 style="text-align:center;">Navigation</p1>
+            <br><p1 style="text-align:center;">Sort By:</p1>
+            <div class="dropdown">
+                <select name="order_by" id="order_by">
+                    <option value="Most to least recent">Most to least recent</option>
+                    <option value="Least to most recent">Least to most recent</option>
+                    <option value="Most to fewest upvotes">Most to fewest upvotes</option>
+                    <option value="Most to fewest upvotes">Most to fewest upvotes</option>
+                </select>
+
+            </div>
         </div>
+
+
         <div class="space">
             <br>
             <p2>Discussions Section</p2>

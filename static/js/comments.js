@@ -4,9 +4,9 @@ document.getElementById("submitForm").addEventListener("click", function (event)
   
  
     let content = document.getElementById("content").value;
-    let author = document.getElementById("author").value;
    
-    body = JSON.stringify({"author": author, "content": content}); 
+   
+    body = JSON.stringify({"content": content}); 
     console.log(body)
   
     fetch('/discussion_comment', {
@@ -44,11 +44,10 @@ document.getElementById("submitForm").addEventListener("click", function (event)
        
         let b = document.createElement("p");
         b.appendChild(document.createTextNode(comment["content"]));
-        let c = document.createElement("p");
-        c.appendChild(document.createTextNode(comment["author"]));
+      
      
         
         a.appendChild(b);
-        a.appendChild(c);
+       
      
         listgrp.prepend(a);

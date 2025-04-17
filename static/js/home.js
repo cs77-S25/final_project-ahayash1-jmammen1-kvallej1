@@ -122,3 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
       
 //         discussion_object.innerText = discussion.up_votes;
 //     }
+
+
+var select = document.getElementById("order_by");
+for(var i=0;i < select.options.length; i++){
+    if(select.options[i].value == c){
+        select.options[i].selected = true;
+    }
+    console.log(select)
+}

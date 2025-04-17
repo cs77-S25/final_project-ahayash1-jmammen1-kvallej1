@@ -54,7 +54,7 @@
 
 
     <form action="{{ url_for('discussion_comment', discussion_id=discussion.id) }}" method="post" class="mt-3">
-        <textarea name="author" class="form-control mb-2" placeholder="By..." required></textarea>
+       
         <textarea name="comment" class="form-control mb-2" placeholder="Reply..." required></textarea>
         <button type="submit" class="btn btn-secondary">Post Comment</button>
     </form>
