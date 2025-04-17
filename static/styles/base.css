@@ -3,10 +3,6 @@ body {
     padding: 0;
 }
 
-
-
-
-
 .navbar {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
@@ -128,12 +124,6 @@ a {
     margin: auto;
 
 }
-
-
-
-
-
-
 
 .list-group {
     background-color: #ffffff;
@@ -266,9 +256,6 @@ a {
 
     font-size: small;
 }
-
-
-
 
 .dropdown {
     position: relative;

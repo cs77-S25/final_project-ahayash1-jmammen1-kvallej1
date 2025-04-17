@@ -2,46 +2,34 @@
 <html lang="en">
 
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SwatShare</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
-   
-   
 </head>
+
 <body>
 
-
-<br><br>
-<div class="container">
-
-
-    <form id="login" action="{{ url_for('login') }}" method="post">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
+    <br><br>
+    <div class="container">
+        <form id="login" action="{{ url_for('login') }}" method="post">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <br>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <br>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
         <br>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <br>
-        <div>
-            <button type="submit">Login</button>
-        </div>
-    </form>
-    <br>
-    <p id="register">Don't have an account? Signup <a href="{{ url_for('signup') }}" >here</a>.</p>
-</div>
-
-
-
-
-
-
-
-
+        <p id="register">Don't have an account? Signup <a href="{{ url_for('signup') }}">here</a>.</p>
+    </div>
 </body>
+
 </html>

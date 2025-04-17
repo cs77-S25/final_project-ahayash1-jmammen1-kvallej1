@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {%block head%}
-    {{ super() }}
+{{ super() }}
 {% endblock %}
 
 {%block title %} {{ session.username}} | Your Content {% endblock %}
@@ -9,68 +9,57 @@
 {%block content %}
 <div class="container">
     <div class="sidebar">
-        <br><p1 style="text-align:center;">Navigation</p1>
+        <br>
+        <p1 style="text-align:center;">Navigation</p1>
     </div>
     <div class="space">
         <br>
         <p2>{{ session.username}} | Your Content</p2>
         <div class="list-group">
             <p1>Discussions</p1>
-            {% for discussion in posts %}    
-                <a href="{{ url_for('dis_posts', discussion_id=discussion.id) }}" class = "list-group-item">
-                   <div class="whereithappens">
-                        <div id="header">
-                            <p id="title">{{discussion.title}}</p>
-                            <p id="author">By: {{discussion.author}}</p>
-                            <p id="course">Course: {{discussion.course}}</p>  
-                        </div>
-
-                        <p id="content">{{discussion.content}}</p>  
-                
-                        <div id="information">                      
-                            <p id="created_at">{{discussion.created_at}}</p>
-                        </div>
+            {% for discussion in posts %}
+            <a href="{{ url_for('dis_posts', discussion_id=discussion.id) }}" class="list-group-item">
+                <div class="whereithappens">
+                    <div id="header">
+                        <p id="title">{{discussion.title}}</p>
+                        <p id="author">By: {{discussion.author}}</p>
+                        <p id="course">Course: {{discussion.course}}</p>
                     </div>
-                    
 
-                </a>
-            {% endfor %}   
+                    <p id="content">{{discussion.content}}</p>
+
+                    <div id="information">
+                        <p id="created_at">{{discussion.created_at}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
 
         </div>
         <div class="list-group">
             <p1>Reviews</p1>
             {% for review in posts %}
-                
-                <a href="{{ url_for('rev_posts', review_id=review.id) }}" class = "list-group-item">>
-                    <div class="whereithappens">
-                        <div id="header">
-                        
-              
-                            <p id="title">{{review.title}}</p1>
-                            <p id="author">By: {{review.author}}</p>
-                            <p id="major">Major: {{review.major}}</p>    
-                        </div>
-                        <p id="content">{{review.content}}</p>  
-                
-                        <div id="information">
-                        
-                            <p id="created_at">{{review.created_at}}</p>
-                            
-                        </div>
+
+            <a href="{{ url_for('rev_posts', review_id=review.id) }}" class="list-group-item">>
+                <div class="whereithappens">
+                    <div id="header">
+                        <p id="title">{{review.title}}</p1>
+                        <p id="author">By: {{review.author}}</p>
+                        <p id="major">Major: {{review.major}}</p>
                     </div>
-                    
-                 
-                </a>
+                    <p id="content">{{review.content}}</p>
+
+                    <div id="information">
+
+                        <p id="created_at">{{review.created_at}}</p>
+
+                    </div>
+                </div>
+
+            </a>
             {% endfor %}
-            
-           
+
         </div>
     </div>
 </div>
-
-
-
-
-
-
 {%endblock%}

@@ -16,10 +16,10 @@
         <p1 style="text-align:center;">Sort By:</p1>
         <div class="dropdown">
             <select name="order_by" id="order_by" onchange="filterby(this)">
-                <option value="">Most to least recent</option>
-                <option value="1">Least to most recent</option>
-                <option value="2">Most to fewest upvotes</option>
-                <option value="3">Most to fewest upvotes</option>
+                <option value="">Most recent</option>
+                <option value="1">Least recent</option>
+                <option value="2">Most upvotes</option>
+                <option value="3">Fewest upvotes</option>
             </select>
 
         </div>
@@ -62,9 +62,6 @@
                 <p id="created_at">{{discussion.created_at}}</p>
             </div>
         </div>
-
-
-
         {% endfor %}
     </div>
 </div>

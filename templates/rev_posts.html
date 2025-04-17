@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
-    {{ super() }}
+{{ super() }}
 <script src="{{ url_for('static', filename='js/review.js') }}" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -11,49 +11,42 @@
 <div class="specificpost">
     <div class="whereithappens">
         <div id="header">
-                            
-                  
             <p id="title">{{review.title}}</p1>
             <p id="author">{{review.author}}</p>
-            <p id="major">{{review.major}}</p>    
+            <p id="major">{{review.major}}</p>
         </div>
-        <p id="content">{{review.content}}</p>  
-
+        <p id="content">{{review.content}}</p>
         <div id="information">
-    
             <p id="created_at">{{review.created_at}}</p>
             <div class="stars">
                 {% for _ in range(review.rating|int) %}
-                    <i class="fa-solid fa-star" style = "color: #ffc107"></i>
+                <i class="fa-solid fa-star" style="color: #ffc107"></i>
                 {% endfor %}
                 {% for _ in range(5 - review.rating|int) %}
-                    <i class="fa-regular fa-star" style = "color: #ccc"></i>
+                <i class="fa-regular fa-star" style="color: #ccc"></i>
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
+<hr>
 
-    
-    
-    
-  
+<h3>Comments</h3>
+<ul class="list-group">
+    {% for comment in review.comments %}
+    <li class="list-group-item">
+        <p id="comcont">{{ comment.content }}</p>
+        <p id="comauth">{{ comment.author }}</p>
+        <p id="comcrea">{{ comment.created_at }}</p>
+    </li>
 
+    {% endfor %}
+</ul>
 
-    <hr>
+<form action="{{ url_for('review_comment', review_id=review.id) }}" method="post" class="mt-3">
 
-    <h3>Comments</h3>
-    <ul class="list-group">
-        {% for comment in review.comments %}
-            <li class="list-group-item"> <p id="comcont">{{ comment.content }}</p> <p id="comauth">{{ comment.author }}</p> <p id="comcrea">{{ comment.created_at }}</p></li>
-
-        {% endfor %}
-    </ul>
-
-    <form action="{{ url_for('review_comment', review_id=review.id) }}" method="post" class="mt-3">
-        
-        <textarea name="comment" class="form-control mb-2" placeholder="Reply..." required></textarea>
-        <button type="submit" class="btn btn-secondary">Post Comment</button>
-    </form>
+    <textarea name="comment" class="form-control mb-2" placeholder="Reply..." required></textarea>
+    <button type="submit" class="btn btn-secondary">Post Comment</button>
+</form>
 
 {% endblock %}

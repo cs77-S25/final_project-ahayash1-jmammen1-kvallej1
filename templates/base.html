@@ -2,27 +2,26 @@
 <html lang="en">
 
 {%block head%}
+
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SwatShare</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
     <!-- <title>{%block title %} {%endblock%} | Blah Blah</title> -->
-   
+
 </head>
 {%endblock%}
 
 <body>
     <nav class="navbar">
         <div class="nav div">
-            
+
             <div class="logo">
                 <img src="{{ url_for('static', filename='phoenix.jpg') }}">
             </div>
-            
+
             <ul id="navigation">
-                
                 <li>
                     <a href="{{ url_for('home') }}">Home</a>
                 </li>
@@ -41,14 +40,8 @@
                     </div>
 
                 </li>
-                
- 
             </ul>
-            
-                
-            
         </div>
-        
     </nav>
     <!-- <ul id="settings">
         <li>
@@ -60,10 +53,9 @@
         </li>
     </ul> -->
 
-
     {%block content%}
     {%endblock%}
 
-    
 </body>
+
 </html>

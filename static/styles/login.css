@@ -1,16 +1,16 @@
-
-
 #login {
     height: 20vh;
     width: 20vh;
-    background-color:#bdc3d2;;
-    border: 1px solid rgb(111, 68, 68); /* Light border */
+    background-color: #bdc3d2;
+    ;
+    border: 1px solid rgb(111, 68, 68);
+    /* Light border */
     margin: auto;
-    border-radius: 10px; /* Slightly rounded corners */
-    padding: 10px;  
+    border-radius: 10px;
+    /* Slightly rounded corners */
+    padding: 10px;
 }
 
-#register{
-    text-align:center;
+#register {
+    text-align: center;
 }
-

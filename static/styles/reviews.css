@@ -1,21 +1,10 @@
-
-
-
-
-
-
-
-
-
-
-
 /* RATING */
 
 .rating_container .rating {
     direction: rtl;
 }
 
-.rating_container .rating label{
+.rating_container .rating label {
     display: inline-block;
     cursor: pointer;
     color: #ebebeb;
@@ -27,7 +16,7 @@
 }
 
 .rating_container .rating label:hover i,
-.rating_container .rating label:hover ~ label i {
+.rating_container .rating label:hover~label i {
     color: #571708;
 }
 
@@ -35,10 +24,7 @@
     display: none;
 }
 
-.rating_container .rating input[type="radio"]:checked + label i,
-.rating_container .rating input[type="radio"]:checked ~ label i {
+.rating_container .rating input[type="radio"]:checked+label i,
+.rating_container .rating input[type="radio"]:checked~label i {
     color: #571708;
 }
-
-
-

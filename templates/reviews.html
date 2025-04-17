@@ -1,97 +1,95 @@
 {% extends "base.html" %}
 
 {%block head%}
-    {{ super() }}
-    <script src="{{url_for('static', filename='js/review.js')}}" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/reviews.css') }}">
-    
+{{ super() }}
+<script src="{{url_for('static', filename='js/review.js')}}" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/reviews.css') }}">
+
 {% endblock %}
 
 {%block content %}
-    <div class="container">
-        <div class="sidebar">
-            <br><p1 style="text-align:center;">Sort By:</p1>
-            <div class="dropdown">
-                <select name="order_by" id="order_by">
-                    <option value="Most to least recent">Most to least recent</option>
-                    <option value="Least to most recent">Least to most recent</option>
-                    <option value="Best to least rated">Best to least rated</option>
-                    <option value="Least to best rated">Least to best rated</option>
-                   
-                </select>
+<div class="container">
+    <div class="sidebar">
+        <br>
+        <p1 style="text-align:center;">Sort By:</p1>
+        <div class="dropdown">
+            <select name="order_by" id="order_by" onchange="filterby(this)">
+                <option value="">Most recent</option>
+                <option value="1">Least recent</option>
+                <option value="2">Highest rating</option>
+                <option value="3">Lowest rating</option>
+            </select>
 
-            </div>
-        </div>
-        <div class="space">
-            <br>
-            <p2>Reviews Section</p2>
-            <div class="main">
-                <div class="add_post">
-                    <p1>Create New Review</p1>
-                    <form id="form">                       
-                        <input type="text" id="title" placeholder="Post title" required maxlength="50">
-                       
-                        <input type="text" id="major" placeholder="Major (optional).." maxlength="50">
-                        <textarea id="content" placeholder="Post content" required></textarea>
-                        <div class="rating_container">
-                            <div class="rating">
-                                <input type="radio" name="rating" id="star5" class="rating-radio" value="5">
-                                <label for="star5"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" name="rating" id="star4" class="rating-radio" value="4">
-                                <label for="star4"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" name="rating" id="star3" class="rating-radio" value="3">
-                                <label for="star3"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" name="rating" id="star2" class="rating-radio" value="2">
-                                <label for="star2"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" name="rating" id="star1" class="rating-radio" value="1">
-                                <label for="star1"><i class="fa-solid fa-star"></i></label>
-                            </div>
-                        </div>
-                        <button id="submitReview">Create Post</button>
-                    </form>
-                </div>
-                
-                
-            </div>
-            <div class="list-group">
-                {% for review in reviews %}
-                    
-                    <a href="{{ url_for('rev_posts', review_id=review.id) }}" class = "list-group-item">>
-                        <div class="whereithappens">
-                            <div id="header">
-                            
-                  
-                                <p id="title">{{review.title}}</p1>
-                                <p id="author">By: {{review.author}}</p>
-                                <p id="major">Major: {{review.major}}</p>    
-                            </div>
-                            <p id="content">{{review.content}}</p>  
-                    
-                            <div id="information">
-                            
-                                <p id="created_at">{{review.created_at}}</p>
-                                <div class="stars">
-                                    {% for _ in range(review.rating|int) %}
-                                        <i class="fa-solid fa-star" style = "color: #ffc107"></i>
-                                    {% endfor %}
-                                    {% for _ in range(5 - review.rating|int) %}
-                                        <i class="fa-regular fa-star" style = "color: #ccc"></i>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        
-                     
-                    </a>
-                {% endfor %}
-                
-               
-            </div>
-        </div>
+            </select>
 
+        </div>
     </div>
+    <div class="space">
+        <br>
+        <p2>Reviews Section</p2>
+        <div class="main">
+            <div class="add_post">
+                <p1>Create New Review</p1>
+                <form id="form">
+                    <input type="text" id="title" placeholder="Post title" required maxlength="50">
+
+                    <input type="text" id="major" placeholder="Major (optional).." maxlength="50">
+                    <textarea id="content" placeholder="Post content" required></textarea>
+                    <div class="rating_container">
+                        <div class="rating">
+                            <input type="radio" name="rating" id="star5" class="rating-radio" value="5">
+                            <label for="star5"><i class="fa-solid fa-star"></i></label>
+                            <input type="radio" name="rating" id="star4" class="rating-radio" value="4">
+                            <label for="star4"><i class="fa-solid fa-star"></i></label>
+                            <input type="radio" name="rating" id="star3" class="rating-radio" value="3">
+                            <label for="star3"><i class="fa-solid fa-star"></i></label>
+                            <input type="radio" name="rating" id="star2" class="rating-radio" value="2">
+                            <label for="star2"><i class="fa-solid fa-star"></i></label>
+                            <input type="radio" name="rating" id="star1" class="rating-radio" value="1">
+                            <label for="star1"><i class="fa-solid fa-star"></i></label>
+                        </div>
+                    </div>
+                    <button id="submitReview">Create Post</button>
+                </form>
+            </div>
+
+
+        </div>
+        <div class="list-group">
+            {% for review in reviews %}
+            <a href="{{ url_for('rev_posts', review_id=review.id) }}" class="list-group-item">>
+                <div class="whereithappens">
+                    <div id="header">
+
+
+                        <p id="title">{{review.title}}</p1>
+                        <p id="author">By: {{review.author}}</p>
+                        <p id="major">Major: {{review.major}}</p>
+                    </div>
+                    <p id="content">{{review.content}}</p>
+
+                    <div id="information">
+
+                        <p id="created_at">{{review.created_at}}</p>
+                        <div class="stars">
+                            {% for _ in range(review.rating|int) %}
+                            <i class="fa-solid fa-star" style="color: #ffc107"></i>
+                            {% endfor %}
+                            {% for _ in range(5 - review.rating|int) %}
+                            <i class="fa-regular fa-star" style="color: #ccc"></i>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+            </a>
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+</div>
 {%endblock%}
-
-
-

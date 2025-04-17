@@ -20,7 +20,6 @@ CORS(app)
 # Initialize db to be used with current Flask app
 with app.app_context():
     db.init_app(app)
-
     # Create the database if it doesn't exist
     # Note: create_all does NOT update tables if they are already in the database. 
     # If you change a model’s columns, use a migration library like Alembic with Flask-Alembic 
@@ -29,16 +28,10 @@ with app.app_context():
 
 #migrate = Migrate(app,db)
 
-
-
-
-
-@app.route('/home')
+@app.route('/home') #code for our home page that allows users to select discussions and reviews tab
 def home():
     discussions=db.session.query(Discussion).filter_by(author=session["username"]).all()
     reviews=db.session.query(Review).filter_by(author=session["username"]).all()
-    
-    
     posts_data=[]
     for discussion in discussions:
         posts_data.append({
@@ -59,26 +52,15 @@ def home():
             'content': review.content,
             'rating': review.rating,
         })
-
-
     return render_template('home.html', posts=posts_data)
 
+#DISCUSSIONSSSS SECTION!
 
-
-#DISCUSSIONSSSS
+#discussions routes/functions are separated into 4 different functions to assist with the correct sorting by filtering
 
 @app.route('/discussions', methods=['POST','GET']) 
 def discussions():
-    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-    
-    
-    # if 'user_id' in session:
-    #      messsage = "Welcome, logged in user"
-    # else:
-    #      message = "Welcome, please log in."
-
-    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-
+    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all() #puts the discussions in the most recent to least recent order
     discussions_data=[]
     for discussion in discussions:
         discussions_data.append({
@@ -91,23 +73,13 @@ def discussions():
             'up_votes': discussion.up_votes,
         })
     # db.session.commit()
-
     return render_template('discussions.html', discussions=discussions_data)
 
 
 
 @app.route('/discussions1', methods=['POST','GET']) 
 def discussions1():
-    discussions=Discussion.query.order_by(Discussion.up_votes.asc()).all()
-    
-    
-    # if 'user_id' in session:
-    #      messsage = "Welcome, logged in user"
-    # else:
-    #      message = "Welcome, please log in."
-
-    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-
+    discussions=Discussion.query.order_by(Discussion.created_at.asc()).all() #puts the discussions in the least recent to most recent order
     discussions_data=[]
     for discussion in discussions:
         discussions_data.append({
@@ -120,22 +92,12 @@ def discussions1():
             'up_votes': discussion.up_votes,
         })
     # db.session.commit()
-
     return render_template('discussions.html', discussions=discussions_data)
 
 
 @app.route('/discussions2', methods=['POST','GET']) 
 def discussions2():
-    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-    
-    
-    # if 'user_id' in session:
-    #      messsage = "Welcome, logged in user"
-    # else:
-    #      message = "Welcome, please log in."
-
-    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-
+    discussions=Discussion.query.order_by(Discussion.up_votes.desc()).all() #puts the discussions in the most upvotes to least upvotes order
     discussions_data=[]
     for discussion in discussions:
         discussions_data.append({
@@ -148,22 +110,12 @@ def discussions2():
             'up_votes': discussion.up_votes,
         })
     # db.session.commit()
-
     return render_template('discussions.html', discussions=discussions_data)
 
 
 @app.route('/discussions3', methods=['POST','GET']) 
 def discussions3():
-    discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-    
-    
-    # if 'user_id' in session:
-    #      messsage = "Welcome, logged in user"
-    # else:
-    #      message = "Welcome, please log in."
-
-    ##discussions=Discussion.query.order_by(Discussion.created_at.desc()).all()
-
+    discussions=Discussion.query.order_by(Discussion.up_votes.asc()).all() #puts the discussions in the least upvotes to most upvotes order
     discussions_data=[]
     for discussion in discussions:
         discussions_data.append({
@@ -176,10 +128,9 @@ def discussions3():
             'up_votes': discussion.up_votes,
         })
     # db.session.commit()
-
     return render_template('discussions.html', discussions=discussions_data)
 
-
+#takes the user to a specific discussion post with a unique discussion id 
 @app.route('/discussion/<int:discussion_id>')
 def dis_posts(discussion_id):
     discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
@@ -188,28 +139,23 @@ def dis_posts(discussion_id):
     #db.session.commit()
     return render_template('dis_posts.html', discussion=discussion) # return the discussion_post object
 
+#creates a new discussion post with the listed attributes
 @app.route('/new_discussion', methods=['POST'])
 def new_discussion():
     form =  request.get_json()
     title = form["title"]
-    content = form["content"] # add authors field here
+    content = form["content"]
     author = session["username"]
     course = form["course"]
-    
-
     created_at = datetime.now()
-
     #discussions = Discussion.query.all()
-    
     if title and content:
         new_discussion = Discussion(title=title, content=content, author=author, created_at=created_at, course=course)
-
         # use .count and  .filterby
         db.session.add(new_discussion)
         db.session.commit()
         print(f"Added new discussion: {new_discussion.serialize()}")  
         return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
-
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
 
 @app.route('/upvote/<int:discussion_id>', methods=['POST'])
@@ -227,12 +173,15 @@ def upvote(discussion_id):
     # if error:
     #     return redirect(url_for('error'))
     return make_response(jsonify({"success": "false"}), 400) 
-#REVIEWSSSSS
 
-@app.route('/reviews')
+
+#REVIEWSSSSS SECTION!
+
+#reviews routes/functions are separated into 4 different functions to assist with the correct sorting by filtering
+
+@app.route('/reviews', methods=['POST','GET']) 
 def reviews():
-    reviews=Review.query.order_by(Review.created_at.desc()).all()
-
+    reviews=Review.query.order_by(Review.created_at.desc()).all() #puts the reviews in the most recent to least recent order
     reviews_data=[]
     for review in reviews:
         reviews_data.append({
@@ -245,6 +194,52 @@ def reviews():
         })
     return render_template('reviews.html', reviews=reviews_data)
 
+@app.route('/reviews1', methods=['POST','GET']) 
+def reviews1():
+    reviews=Review.query.order_by(Review.created_at.asc()).all() #puts the reviews in the least recent to most recent order
+    reviews_data=[]
+    for review in reviews:
+        reviews_data.append({
+            'id': review.id,
+            'title': review.title,
+            'author': review.author,
+            'created_at': review.created_at,
+            'content': review.content,
+            'rating': review.rating,
+        })
+    return render_template('reviews.html', reviews=reviews_data)
+
+@app.route('/reviews2', methods=['POST','GET']) 
+def reviews2():
+    reviews=Review.query.order_by(Review.rating.desc()).all() #puts the reviews in the highest ranked to lowest ranked order
+    reviews_data=[]
+    for review in reviews:
+        reviews_data.append({
+            'id': review.id,
+            'title': review.title,
+            'author': review.author,
+            'created_at': review.created_at,
+            'content': review.content,
+            'rating': review.rating,
+        })
+    return render_template('reviews.html', reviews=reviews_data)
+
+@app.route('/reviews3', methods=['POST','GET']) 
+def reviews3():
+    reviews=Review.query.order_by(Review.rating.asc()).all() #puts the reviews in the lowest ranked to highest ranked order
+    reviews_data=[]
+    for review in reviews:
+        reviews_data.append({
+            'id': review.id,
+            'title': review.title,
+            'author': review.author,
+            'created_at': review.created_at,
+            'content': review.content,
+            'rating': review.rating,
+        })
+    return render_template('reviews.html', reviews=reviews_data)
+
+#creates a new review with the following attributes
 @app.route('/new_review', methods=['POST'])
 def new_review():
     form =  request.get_json()
@@ -253,12 +248,10 @@ def new_review():
     author = session["username"]
     major = form["major"]
     rating = form["rating"]
-
     created_at = datetime.now()
-    
+
     if title and content:
         new_review = Review(title=title, content=content, author=author, created_at=created_at, rating=int(rating), major=major)
-
         # use .count and  .filterby
         db.session.add(new_review)
         db.session.commit()
@@ -266,18 +259,16 @@ def new_review():
         return make_response(jsonify({"success": "true", "review": new_review.serialize()}), 200)
 
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
-    
+
+#takes the user to a specific review post with a unique review id 
 @app.route('/review/<int:review_id>')
 def rev_posts(review_id):
     review = Review.query.get_or_404(review_id) # returns a 404 error if get fails
-    
     review = db.session.query(Review).get(review_id)
-
     return render_template('rev_posts.html', review=review)
 
 
-#COMMENTSSSS
-
+#COMMENTSSSS SECTION!
 
 @app.route('/comment/<int:discussion_id>', methods=['POST'])
 def discussion_comment(discussion_id):
@@ -307,28 +298,10 @@ def review_comment(review_id):
 
     return redirect(url_for('rev_posts', review_id=review_id))
 
-# @app.route('/upvote/<int:discussion_id>', methods=['POST'])
-# def upvote(discussion_id):
-#     update_discussion = Discussion.query.get_or_404(discussion_id)
-#     if update_discussion:
-#         newupvotes = update_discussion.upvotes +1
-#         update_discussion.upvotes = newupvotes
-#         db.session.commit()
-#         return make_response(jsonify({"Success": "true", "discussion": update_discussion.serialize()}), 200)
-#     else:
-#         print("Discussion not found.")
-#     return make_response(jsonify({"Success": "false"}), 400)
 
+#LOGINNNN SECTION!
 
-# @app.route('/review_post/<int:review_id>')
-# def review_post(review_id):
-#     review_post = Review_post.query.get_or_404(thread_id) # returns a 404 error if get fails
-#     print(review_post)
-#     return render_template('reviews.html', review_post=review_post) # return the review_post object
-
-
-#LOGINNNN
-
+#where the user logs into SwatShare
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if 'user_id' not in session:
@@ -349,8 +322,9 @@ def login():
         else:
             return render_template('login.html')  # Render the login template
     else:
-        return redirect(url_for('login.html'))  # Redirect to the login page
-    
+        return redirect(url_for('home'))  # Redirect to the home page
+
+#checks if password is valid
 def check_password(a,b):
     # if check_password_hash(user.password, password):
     if a == b:
@@ -363,7 +337,7 @@ def generate_password(a):
     # return generate_password_hash(password, method='sha256')
     return a
     
-
+#creates signup for user
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if 'user_id' not in session:
@@ -374,7 +348,6 @@ def signup():
             #check if email is swarthmore
             print(username)
             new_password = generate_password(password) 
-           
             new_user = User(username=username, password=new_password)  # Create a new user object
             db.session.add(new_user)  # Add the new user to the session
             db.session.commit()  # Commit the session to the database
@@ -384,14 +357,15 @@ def signup():
     else:
         return redirect(url_for('discussions'))  # Redirect to the login page
 
+#where the user logs out of SwatShare
 @app.route('/logout')
 def logout():
     if 'user_id' in session:
         session.pop('user_id', None)  # Remove the user ID from the session
     return redirect(url_for('login'))  # Redirect to the login page
 
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
 #     threads = Thread.query.order_by(Thread.created_at.desc()).all()
 #     return render_template('home.html', threads=threads) # return list of threads
@@ -441,5 +415,38 @@ def logout():
 
 #     return redirect(url_for('thread', thread_id=thread_id)) # set variable thread_id to be thread_id
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+# @app.route('/upvote/<int:discussion_id>', methods=['POST'])
+# def upvote(discussion_id):
+#     update_discussion = Discussion.query.get_or_404(discussion_id)
+#     if update_discussion:
+#         newupvotes = update_discussion.upvotes +1
+#         update_discussion.upvotes = newupvotes
+#         db.session.commit()
+#         return make_response(jsonify({"Success": "true", "discussion": update_discussion.serialize()}), 200)
+#     else:
+#         print("Discussion not found.")
+#     return make_response(jsonify({"Success": "false"}), 400)
+
+
+# @app.route('/review_post/<int:review_id>')
+# def review_post(review_id):
+#     review_post = Review_post.query.get_or_404(thread_id) # returns a 404 error if get fails
+#     print(review_post)
+#     return render_template('reviews.html', review_post=review_post) # return the review_post object
+    
+# @app.route('/reviews')
+# def reviews():
+#     reviews=Review.query.order_by(Review.created_at.desc()).all()
+
+#     reviews_data=[]
+#     for review in reviews:
+#         reviews_data.append({
+#             'id': review.id,
+#             'title': review.title,
+#             'author': review.author,
+#             'created_at': review.created_at,
+#             'content': review.content,
+#             'rating': review.rating,
+#         })
+#     return render_template('reviews.html', reviews=reviews_data)
