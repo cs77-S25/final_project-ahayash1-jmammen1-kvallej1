@@ -58,7 +58,7 @@ def home():
 
 #discussions routes/functions are separated into 4 different functions to assist with the correct sorting by filtering
 
-@app.route('/discussions', methods=['POST','GET']) 
+@app.route('/discussions', methods=['GET', 'POST']) 
 def discussions():
     discussions=Discussion.query.order_by(Discussion.created_at.desc()).all() #puts the discussions in the most recent to least recent order
     discussions_data=[]
@@ -142,6 +142,7 @@ def dis_posts(discussion_id):
 #creates a new discussion post with the listed attributes
 @app.route('/new_discussion', methods=['POST'])
 def new_discussion():
+    print("here")
     form =  request.get_json()
     title = form["title"]
     content = form["content"]
@@ -152,6 +153,7 @@ def new_discussion():
     if title and content:
         new_discussion = Discussion(title=title, content=content, author=author, created_at=created_at, course=course)
         # use .count and  .filterby
+        print(new_discussion)
         db.session.add(new_discussion)
         db.session.commit()
         print(f"Added new discussion: {new_discussion.serialize()}")  
@@ -242,6 +244,7 @@ def reviews3():
 #creates a new review with the following attributes
 @app.route('/new_review', methods=['POST'])
 def new_review():
+    print("here")
     form =  request.get_json()
     title = form["title"]
     content = form["content"] # add authors field here

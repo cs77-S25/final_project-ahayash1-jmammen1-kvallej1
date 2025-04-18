@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function refreshDiscussions(discussion) {
         const el = document.getElementById(discussion.id + "number")
+        console.log(el)
         if (el) {
             el.innerText = discussion.up_votes;
         }

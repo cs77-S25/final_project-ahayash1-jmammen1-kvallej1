@@ -2,6 +2,7 @@
 // let up_votes = document.getElementById("up_votes")
 
 //allows user to filter by whatever the user chooses and updates the page to the correct filter
+
 console.log(window.location.href.charAt(window.location.href.length - 1))
 if (window.location.href.charAt(window.location.href.length - 1) == "s") {
   let thing = document.getElementById("order_by").value = ""
