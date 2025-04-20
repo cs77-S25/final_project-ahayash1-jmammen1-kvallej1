@@ -17,7 +17,7 @@
         <p2>{{ session.username}} | Your Content</p2>
         <div class="list-group">
             <p1>Discussions</p1>
-            {% for discussion in posts %}
+            {% for discussion in discussions %}
             <a href="{{ url_for('dis_posts', discussion_id=discussion.id) }}" class="list-group-item">
                 <div class="whereithappens">
                     <div id="header">
@@ -38,7 +38,7 @@
         </div>
         <div class="list-group">
             <p1>Reviews</p1>
-            {% for review in posts %}
+            {% for review in reviews %}
 
             <a href="{{ url_for('rev_posts', review_id=review.id) }}" class="list-group-item">>
                 <div class="whereithappens">

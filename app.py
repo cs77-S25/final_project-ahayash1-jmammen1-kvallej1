@@ -32,9 +32,10 @@ with app.app_context():
 def home():
     discussions=db.session.query(Discussion).filter_by(author=session["username"]).all()
     reviews=db.session.query(Review).filter_by(author=session["username"]).all()
-    posts_data=[]
+    discussion_data=[]
+    review_data=[]
     for discussion in discussions:
-        posts_data.append({
+        discussion_data.append({
             'id': discussion.id,
             'title': discussion.title,
             'author': discussion.author,
@@ -44,7 +45,7 @@ def home():
             'up_votes': discussion.up_votes,
         })
     for review in reviews:
-        posts_data.append({
+        review_data.append({
             'id': review.id,
             'title': review.title,
             'author': review.author,
@@ -52,7 +53,7 @@ def home():
             'content': review.content,
             'rating': review.rating,
         })
-    return render_template('home.html', posts=posts_data)
+    return render_template('home.html', discussions=discussion_data, reviews=review_data)
 
 #DISCUSSIONSSSS SECTION!
 
