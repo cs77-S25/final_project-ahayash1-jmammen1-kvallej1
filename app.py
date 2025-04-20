@@ -130,15 +130,6 @@ def discussions3():
     # db.session.commit()
     return render_template('discussions.html', discussions=discussions_data)
 
-#takes the user to a specific discussion post with a unique discussion id 
-@app.route('/discussion/<int:discussion_id>')
-def dis_posts(discussion_id):
-    discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
-    print(discussion)
-    #print(discussion)
-    #db.session.commit()
-    return render_template('dis_posts.html', discussion=discussion) # return the discussion_post object
-
 #creates a new discussion post with the listed attributes
 @app.route('/new_discussion', methods=['POST'])
 def new_discussion():
@@ -159,6 +150,15 @@ def new_discussion():
         print(f"Added new discussion: {new_discussion.serialize()}")  
         return make_response(jsonify({"success": "true", "discussion": new_discussion.serialize()}), 200)
     return make_response(jsonify({"success": "false"}), 400) # return both JSON object and HTTP response status (400: bad request)
+
+#takes the user to a specific discussion post with a unique discussion id 
+@app.route('/discussion/<int:discussion_id>')
+def dis_posts(discussion_id):
+    discussion = Discussion.query.get_or_404(discussion_id) # returns a 404 error if get fails
+    print(discussion)
+    #print(discussion)
+    #db.session.commit()
+    return render_template('dis_posts.html', discussion=discussion) # return the discussion_post object
 
 @app.route('/upvote/<int:discussion_id>', methods=['POST'])
 def upvote(discussion_id):

@@ -3,7 +3,9 @@
 {%block head%}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
+<script src="{{url_for('static', filename='js/home.js')}}" defer></script>
 <script src="{{url_for('static', filename='js/post.js')}}" defer></script>
+
 
 {% endblock %}
 
@@ -21,7 +23,7 @@
                 <option value="2">Most upvotes</option>
                 <option value="3">Fewest upvotes</option>
             </select>
-            
+
             </select>
         </div>
     </div>

@@ -81,15 +81,11 @@ listgrp.prepend(a);
 function refreshReviews(review) {
     let review_object = document.getElementById(review.id + "number");
     console.log(review_object);
-
     review_object.innerText = review.rating;
 }
 
 //assists with sorting by the correct filter by selection by the user
 async function filterby(element) {
     console.log(element.value);
-
     window.location.href = "/reviews" + element.value
-
-
 } 
