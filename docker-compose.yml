@@ -1,21 +1,21 @@
 services:
-  SwatShare:
-    image: registry.sccs.swarthmore.edu/cs77-s25/SwatShare/SwatShare:latest
+  swatshare:
+    image: registry.sccs.swarthmore.edu/cs77-s25/swatshare/swatshare:latest
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
+    #environment:
     #env_file:
     #  - .env
     deploy:
       labels:
         - "traefik.enable=true"
         - "traefik.docker.network=traefik"
-        - "traefik.http.routers.SwatShare.entrypoints=https"
-        - "traefik.http.routers.SwatShare.rule=Host(`SwatShare.sccs.swarthmore.edu`)"
-        - "traefik.http.routers.SwatShare.tls=true"
-        - "traefik.http.routers.SwatShare.tls.certresolver=letsEncrypt"
-        - "traefik.http.services.SwatShare.loadbalancer.server.port=5000"
+        - "traefik.http.routers.swatshare.entrypoints=https"
+        - "traefik.http.routers.swatshare.rule=Host(`swatshare.sccs.swarthmore.edu`)"
+        - "traefik.http.routers.swatshare.tls=true"
+        - "traefik.http.routers.swatshare.tls.certresolver=letsEncrypt"
+        - "traefik.http.services.swatshare.loadbalancer.server.port=5000"
     networks:
       - internal
       - traefik
