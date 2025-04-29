@@ -13,7 +13,7 @@ document.getElementById("submitReview").addEventListener("click", function (even
 
     let form = document.getElementById("form");
     let title = document.getElementById("title").value;
-    let content = document.getElementById("content").value;
+    let content = document.getElementById("new_content").value;
     let major = document.getElementById("major").value;
     let selectedRatingInput = document.querySelector('input[name="rating"]:checked');
     let rating = selectedRatingInput ? selectedRatingInput.value : null;

@@ -2,7 +2,7 @@ document.getElementById("submitDiscussion").addEventListener("click", function (
     event.preventDefault(); // Prevent default form submission
     // let form = document.getElementById("form");
     let title = document.getElementById("title").value;
-    let content = document.getElementById("content").value;
+    let content = document.getElementById("new_content").value;
     let course = document.getElementById("course").value;
 
     body = JSON.stringify({ "title": title, "content": content, "course": course }); //deleted "created_at": created_at,
