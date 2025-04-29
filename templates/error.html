@@ -1,16 +1,22 @@
-{% extends "base.html" %}
-{% block head %}
-    {{ super() }}
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}">
-{% endblock %}
 
 
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="error-container">
-    <h1>Oops! Something went wrong.</h1>
-    <p>We're sorry, but {% if error %} {{error}} {% endif %}</p>
-    <a href="{{ url_for('login') }}" class="btn btn-primary">Back to Login</a>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwatShare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+</head>
 
-{% endblock %}
+<body>
+
+    <div class="error-container">
+        <h1>Oops! Something went wrong.</h1>
+        <p>We're sorry, but {% if error %} {{error}} {% endif %}</p>
+        <a href="{{ url_for('login') }}" class="btn btn-primary">Back to Login</a>
+    </div>
+</body>
+
+</html>

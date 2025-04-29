@@ -32,14 +32,15 @@
     <div class="space">
         <br>
         <p2>Discussions Section</p2>
-
+        <h3>Discussions are an opportunity to share a fact, an interesting theory, a perplexing conversation, a good book, resource, or anything that a Swattie is inspired to share from their academic experiences. </h3>
         <div class="add_post">
             <p1>Create New Discussion</p1>
+            
             <form id="form">
-                <input type="text" id="title" placeholder="Post title" required maxlength="50">
+                <input type="text" id="title" placeholder="Title" required maxlength="50">
 
                 <input type="text" id="course" placeholder="Class (optional).." required maxlength="50">
-                <textarea id="content" placeholder="Post content" required></textarea>
+                <textarea id="new_content" placeholder="Post content" required></textarea>
                 <button id="submitDiscussion">Create Post</button>
             </form>
         </div>
@@ -57,12 +58,12 @@
 
             </a>
             <div id="information" class="info list-group-item">
-
+                
                 <div id="{{discussion.id}}number">{{discussion.up_votes}}</div>
                 <img width="20" height="20" id="{{discussion.id}}" onclick="upvote(this)" src="{{url_for('static',
                                     filename='/images/upvote.png')}}" class="upvote" /><img />
-
-                <p id="created_at">{{discussion.created_at}}</p>
+                <p id="disc_created_at">{{discussion.created_at}}</p>
+                
             </div>
         </div>
         {% endfor %}

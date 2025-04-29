@@ -10,11 +10,14 @@
 <div class="container">
     <div class="sidebar">
         <br>
-        <p1 style="text-align:center;">Navigation</p1>
+        <p1 style="text-align:center;">Platform Information</p1>
+        <h4>Swatshare facilitates academic learning outside of the lecture hall. With the goal of sparking curiosity, we invite you to engage with other Swatties and learn about topics that you would otherwise not be exposed to in the course of your studies. Furthermore, Swatshare provides the opportunity to share feedback on and express opinions about classes and Professors at Swarthmore.
+            </h4>
+        <br>
     </div>
     <div class="space">
         <br>
-        <p2> Welcome {{ session.username}}! | Below please find your content:</p2>
+        <p2> Welcome {{ session.username}}! | Your Content:</p2>
         <div class="list-group">
             <p1>Discussions</p1>
             {% for discussion in discussions %}

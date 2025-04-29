@@ -1,4 +1,4 @@
-#!/home/ahayash1/cs77/final_project-ahayash1-jmammen1-kvallej1/.venv/bin/python3
+#!/home/jmammen1/cs77/final_project-ahayash1-jmammen1-kvallej1/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
