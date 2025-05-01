@@ -208,6 +208,7 @@ def reviews():
             'created_at': review.created_at,
             'content': review.content,
             'rating': review.rating,
+            'major': review.major,
         })
     return render_template('reviews.html', reviews=reviews_data)
 
@@ -223,6 +224,7 @@ def reviews1():
             'created_at': review.created_at,
             'content': review.content,
             'rating': review.rating,
+            'major': review.major,
         })
     return render_template('reviews.html', reviews=reviews_data)
 
@@ -238,6 +240,7 @@ def reviews2():
             'created_at': review.created_at,
             'content': review.content,
             'rating': review.rating,
+            'major': review.major,
         })
     return render_template('reviews.html', reviews=reviews_data)
 
@@ -253,6 +256,7 @@ def reviews3():
             'created_at': review.created_at,
             'content': review.content,
             'rating': review.rating,
+            'major': review.major,
         })
     return render_template('reviews.html', reviews=reviews_data)
 
