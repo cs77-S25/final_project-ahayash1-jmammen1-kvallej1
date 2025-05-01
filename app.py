@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from models import db, Discussion, Review, Comment, User
+from models import db, Discussion, Review, Comment, User, Vote
 from datetime import date, timedelta, datetime
 from flask_migrate import Migrate
 from pprint import pprint
@@ -164,18 +164,32 @@ def dis_posts(discussion_id):
 @app.route('/upvote/<int:discussion_id>', methods=['POST'])
 def upvote(discussion_id):
     # UPDATE Thread
+    user_id = session.get('user_id')  # Get the user ID from the session
+    if not user_id:
+        return make_response(jsonify({"success": "false", "message": "Login required"}), 401)
+    
+    user = User.query.get(user_id)
+
     update_discussion = Discussion.query.get_or_404(discussion_id) # check if user exists, return Users object or None
-    if update_discussion: # check if some value (None evaluates to False)
-        newupvotes = update_discussion.up_votes + 1
-        update_discussion.up_votes = newupvotes
-        db.session.commit()
-        return make_response(jsonify({"success": "true", "discussion": update_discussion.serialize()}), 200)
-    else:
-        print("Discussion not found.")
-    # error = False
-    # if error:
-    #     return redirect(url_for('error'))
-    return make_response(jsonify({"success": "false"}), 400) 
+
+    existing_vote = Vote.query.filter_by(user_id=user.id, discussion_id=update_discussion.id).first()
+    if existing_vote:
+        return make_response(jsonify({"success": "false", "message": "Already voted"}), 400)
+    
+    new_vote = Vote(user_id=user.id, discussion_id=update_discussion.id)
+    db.session.add(new_vote)
+
+    newupvotes = update_discussion.up_votes + 1
+    update_discussion.up_votes = newupvotes
+    db.session.commit()
+
+    return make_response(jsonify({"success": "true", "discussion": update_discussion.serialize()}), 200)
+    # else:
+    #     print("Discussion not found.")
+    # # error = False
+    # # if error:
+    # #     return redirect(url_for('error'))
+    # return make_response(jsonify({"success": "false"}), 400) 
 
 
 #REVIEWSSSSS SECTION!

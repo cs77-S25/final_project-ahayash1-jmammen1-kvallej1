@@ -25,6 +25,15 @@ class Discussion(db.Model):
                 "author": self.author,\
                 "up_votes": self.up_votes,\
                 "created_at": self.created_at}
+    
+class Vote(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    discussion_id = db.Column(db.Integer, db.ForeignKey('discussion.id'), nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'discussion_id', name='unique_user_discussion_vote'),
+    )
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
