@@ -112,13 +112,14 @@ a {
 
 
 .add_post {
-    height: 20vh;
+    min-height: 20vh;
     width: 50vh;
     background-color: #bfc1c8;
     margin: auto;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    
 }
 
 #content_box {
@@ -181,6 +182,7 @@ a {
 #new_content {
     width: 50vh;
     height:10vh;
+    resize: none;
 }
 
 /* #title{
@@ -220,7 +222,7 @@ a {
 
 #header #course {
     color: rgb(80, 10, 10);
-
+    
     font-size: small;
 }
 
@@ -279,16 +281,29 @@ a {
 .dropdown-content {
     display: none;
     position: absolute;
+    right: 0; /* this aligns it to the right edge of the parent */
     background-color: #c3c5d5;
-
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-
     z-index: 1;
+    padding: 0;   /* Gives space around the links */
+    border-radius: 4px;
+    width: max-content; /* fits the content naturally */
+    max-width: 200px; 
+    line-height: 1.2;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 12px;       /* reduce vertical padding */
+    text-decoration: none;
+    color: black;
+    white-space: nowrap;
+    margin: 0;               /* remove margin between links */
+    font-size: 14px;         /* optional: reduce text size */
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
-    margin-left: w0px;
 }
 
 /* POTENTIALLY EXTRANEOUS */
@@ -369,4 +384,23 @@ a {
 
 .info {
     width: 100px;
+}
+
+#commentbox {
+    width: 100vh;
+    height:10vh;
+    resize: none;
+}
+
+.section-title {
+    margin-left: -65px; /* Counteracts the 75px left padding of .list-group */
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: rgb(80, 10, 10);
+    font-weight: bold;
+    font-size: large;
+}
+
+#form input, #form textarea {
+    font-family:montserrat;
 }

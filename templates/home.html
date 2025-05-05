@@ -19,7 +19,8 @@
         <br>
         <p2> Welcome {{ session.username}}! | Your Content:</p2>
         <div class="list-group">
-            <p1>Discussions</p1>
+            <div> </div>
+            <p class="section-title">Discussions</p>
             {% for discussion in discussions %}
             <a href="{{ url_for('dis_posts', discussion_id=discussion.id) }}" class="list-group-item">
                 <div class="whereithappens">
@@ -40,10 +41,11 @@
 
         </div>
         <div class="list-group">
-            <p1>Reviews</p1>
+            <div> </div>
+            <p class="section-title">Reviews</p>
             {% for review in reviews %}
 
-            <a href="{{ url_for('rev_posts', review_id=review.id) }}" class="list-group-item">>
+            <a href="{{ url_for('rev_posts', review_id=review.id) }}" class="list-group-item">
                 <div class="whereithappens">
                     <div id="header">
                         <p id="title">{{review.title}}</p1>

@@ -292,7 +292,7 @@ def rev_posts(review_id):
 
 #COMMENTSSSS SECTION!
 
-@app.route('/comment/<int:discussion_id>', methods=['POST'])
+@app.route('/discussion/<int:discussion_id>/comment', methods=['POST'])
 def discussion_comment(discussion_id):
     content = request.form.get('comment')
     author = session["username"]
@@ -306,7 +306,7 @@ def discussion_comment(discussion_id):
 
     return redirect(url_for('dis_posts', discussion_id=discussion_id)) # set variable thread_id to be thread_id
 
-@app.route('/comment/<int:review_id>', methods=['POST'])
+@app.route('/review/<int:review_id>/comment', methods=['POST'])
 def review_comment(review_id):
     content = request.form.get('comment')
     author = session["username"]
