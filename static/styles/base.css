@@ -161,6 +161,7 @@ a {
     border-radius: 5px;
     /* Slightly rounded corners */
     font-family:montserrat;
+    font-size: large;
 }
 
 .specificpost {
@@ -175,6 +176,7 @@ a {
     margin: auto;
     /* Space between posts */
     background-color: #f9f9f9;
+    font-size: large;
     /* Slightly darker background */
 
 }
